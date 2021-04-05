@@ -154,8 +154,16 @@
         android:layout_height="wrap_content"
         android:text="Wrong answers"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bt_change_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Second Test"
+        app:layout_constraintBottom_toBottomOf="@+id/bt_wrong_answers"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/bt_wrong_answers" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

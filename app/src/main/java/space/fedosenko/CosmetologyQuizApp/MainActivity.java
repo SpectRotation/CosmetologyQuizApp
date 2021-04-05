@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button button2;
     private Button button3;
     private Button button4;
+    private  Button btChangeTest;
     private Button btWrongAnswers;
     private TextView textView;
     private TextView textCorrect;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button2 = findViewById(R.id.bt2);
         button3 = findViewById(R.id.bt3);
         button4 = findViewById(R.id.bt4);
+        btChangeTest = findViewById(R.id.bt_change_test);
         btWrongAnswers = findViewById(R.id.bt_wrong_answers);
         btWrongAnswers.setBackgroundColor(btWrongAnswers.getHighlightColor());
         btWrongAnswers.setTextColor(Color.BLACK);
@@ -53,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textCorrect = findViewById(R.id.correct_count);
         textIncorrect= findViewById(R.id.incorrect_count);
 
-        Model.getInstance().setQuestions();
+        Model.getInstance().setFirstTestQuestions();
 
         button1.setOnClickListener(this);
         button2.setOnClickListener(this);
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         mix();
-        //mix(button1, button2, button3, button4, textView);
+
 
     }
 
@@ -103,6 +105,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     button4.setBackgroundColor(Color.RED);
                     incorrectAnswerAction();
+                }
+                break;
+            case R.id.bt_change_test:
+                Model.getInstance().changeTestNumber();
+                if (Model.getInstance().getTestNumber()==1){
+                    btChangeTest.setText("First Test");
+                } else {
+                    btChangeTest.setText("Second Test");
                 }
                 break;
             case R.id.bt_wrong_answers:
