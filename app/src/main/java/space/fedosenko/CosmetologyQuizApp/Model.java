@@ -7,6 +7,7 @@ public class Model {
     private static Model instance = new Model();
     private ArrayList<Question> test1 = new ArrayList<>();
     private ArrayList<Question> test2 = new ArrayList<>();
+    private ArrayList<Question> test3 = new ArrayList<>();
     private ArrayList<Question>  questions;
     private ArrayList<Question> wrongAnswers = new ArrayList<>();
     private boolean failedQuestions = false;
@@ -16,10 +17,12 @@ public class Model {
 
 
     private Model() {
-        testNames.add("First Test");
-        testNames.add("Infection Control");
 
         testNames.add("Wrong Answers");
+        testNames.add("First Test");
+        testNames.add("Infection Control");
+        testNames.add("Anatomy and Physiology");
+
         setQuestions();
         questions = test1;
     }
@@ -165,7 +168,71 @@ public class Model {
         test2.add(new  Question("Strict __________ practices should be used with all clients.", "infection control", "emergency", "surgical", "first-aid"));
         test2.add(new  Question("Showing no symptoms or signs of infection is considered being _________.", "asymptomatic", "communicable", "contagious", "symptomatic"));
         test2.add(new  Question("The presence of _________ is a sign of a bacterial infection.", "pus", "spores", "blood", "oiliness"));
-        test2.add(new  Question("", "", "", "", ""));
+
+        test3.add(new  Question("What scalp muscle causes wrinkles across the forehead?", "Frontalis", "Epicranius", "Epicranial aponeurosis", "Occipitalis"));
+        test3.add(new  Question("What muscle in the chest assists with breathing?", "Serratus anterior", "Pectoralis minor", "Bicep", "Pectoralis major"));
+        test3.add(new  Question("What nervous system in the body includes the brain?", "Central nervous system.", "Autonomic nervous system.", "Somatic nervous system.", "Peripheral nervous system."));
+        test3.add(new  Question("An example of an endocrine gland would be a(n) __________ gland.", "pituitary", "sweat", "oil", "duct"));
+        test3.add(new  Question("An example of connective tissue would be__________.", "lymph", "neurons", "glands", "the lining of the heart"));
+        test3.add(new  Question("The word ending -ology means ___________.", "“study of”", "“part of”", "“science of”", "“map of”"));
+        test3.add(new  Question("Where do the cervical or spinal nerves originate?", "Spinal cord", "Brain", "Vertebrae", "Spinal column"));
+        test3.add(new  Question("What type of glands release hormonal secretions directly into the bloodstream?", "Endocrine", "Oil", "Exocrine", "Duct"));
+        test3.add(new  Question("What color is blood in the veins?", "Dark red", "Light pink", "Bright red", "Dark pink"));
+        test3.add(new  Question("What artery supplies blood to the forehead?", "Frontal", "Transverse facial", "Middle temporal", "Submental"));
+        test3.add(new  Question("The cell membrane is the cell wall that encloses the ________.", "protoplasm", "yolk", "cytoplasm", "nucleus"));
+        test3.add(new  Question("What body system destroys disease-causing microorganisms?", "Lymphatic/immune", "Integumentary", "Excretory", "Circulatory"));
+        test3.add(new  Question("What part of a cell is needed for growth, reproduction, and self-repair?", "The cytoplasm.", "The nucleus.", "The cell membrane.", "The protoplasm."));
+        test3.add(new  Question("What hormone is primarily present in females?", "Estrogen", "Insulin", "Adrenaline", "Testosterone"));
+        test3.add(new  Question("The ________ system helps to regulate the body’s temperature.", "integumentary", "circulatory", "muscular", "endocrine"));
+        test3.add(new  Question("How many bones are in the body?", "206", "230", "140", "120"));
+        test3.add(new  Question("An oval, bony case that protects the brain is the _________.", "cranium", "maxillae", "thorax", "mandible"));
+        test3.add(new  Question("Which of the following bring nutrients to the cells and carry away waste materials?", "Capillaries", "Venules", "Arterioles", "Arteries"));
+        test3.add(new  Question("In the hand, ____________ draw the fingers together.", "adductors", "abductors", "extensors", "pronators"));
+        test3.add(new  Question("The muscular system functions to_____________.", "help produce movement within the body", "carry impulses from the central nervous system", "transport blood to and from the heart", "help produce both white and red blood cells"));
+        test3.add(new  Question("What U-shaped bone(s) is located at the base of tongue?", "Hyoid", "Phalanges", "Thorax", "Zygomatic"));
+        test3.add(new  Question("Which of the following helps carry wastes and impurities away from the cells before it is routed back to the circulatory system?", "Lymph", "Blood", "Interstitial fluid", "Water"));
+        test3.add(new  Question("A normal adult heart beats about how many times per minute?", "60 to 80", "100 to 110", "90 to 120", "40 to 50"));
+        test3.add(new  Question("What is the largest organ of the body?", "the skin", "the lungs", "the heart", "the brain"));
+        test3.add(new  Question("What muscle would you be using if you were grinning?", "Risorius", "Depressor labii inferioris", "Zygomaticus major", "Levator labii superioris"));
+        test3.add(new  Question("Reflexes do not have to be learned because they are _________.", "automatic", "superficial", "voluntary", "permanent"));
+        test3.add(new  Question("What does the word integument mean?", "Natural covering", "Map", "Bone", "Study of"));
+        test3.add(new  Question("What body system provides a suitable fluid environment for the cells?", "Lymphatic/immune", "Circulatory", "Integumentary", "Endocrine"));
+        test3.add(new  Question("Facial hair growth and color is a result of_____________.", "changing or fluctuating hormones", "a lack of immunities", "inflammation of the tissue", "body temperature"));
+        test3.add(new  Question("One of the functions of bone marrow is to produce_________.", "white and red blood cells", "hormones", "minerals", "movement within the body"));
+        test3.add(new  Question("Motor nerves carry impulses from the brain to the _________.", "muscles", "skin", "brain", "nose"));
+        test3.add(new  Question("An example of a hormone is __________.", "estrogen", "blood", "oil", "sweat"));
+        test3.add(new  Question("What artery supplies blood to the brain?", "Internal carotid", "External carotid", "Submental", "Facial"));
+        test3.add(new  Question("A(n) ___________ is the primary structural unit of the nervous system.", "neuron", "axon", "dendrite", "axon terminal"));
+        test3.add(new  Question("Which of the following is the largest and most complex organization of nerve tissue?", "Brain.", "Cranial nerves.", "Spinal nerves.", "Spinal cord."));
+        test3.add(new  Question("Which of the following is the chief sensory nerve of the face?", "Trifacial nerve.", "Mental nerve.", "Mandibular nerve.", "Maxillary nerve."));
+        test3.add(new  Question("What type of tissue is bone composed of?", "Connective", "Nerve", "Muscle", "Epithelial"));
+        test3.add(new  Question("The seventh cranial nerve is also known as the_______nerve.", "facial", "trigeminal", "accessory", "trifacial"));
+        test3.add(new  Question("__________ are thick-walled, muscular, flexible tubes.", "Arteries", "Venules", "Arterioles", "Capillaries"));
+        test3.add(new  Question("________ tissue is a technical term for fat.", "Adipose", "Nerve", "Epithelial", "Muscle"));
+        test3.add(new  Question("Which of the following is the largest bone of the arm?", "Humerus", "Ulna", "Carpus", "Radius"));
+        test3.add(new  Question("The ______ bone joins all of the bones of the cranium together.", "sphenoid", "frontal", "ethmoid", "zygomatic"));
+        test3.add(new  Question("The orbicularis oculi muscle_______________.", "enables you to close your eyes", "can easily be damaged during makeup application", "wrinkles the forehead vertically", "draws the eyebrows down"));
+        test3.add(new  Question("What body system controls and coordinates the functions of all the other systems?", "Nervous", "Muscular", "Circulatory", "Endocrine"));
+        test3.add(new  Question("A _______ is the connection between two or more bones of the skeleton.", "joint", "ligament", "tendon", "muscle"));
+        test3.add(new  Question("One of the functions of the lymphatic/immune system is to__________.", "act as a defense against toxins and bacteria", "pass on the genetic code", "stimulate functional activity", "supply oxygen and eliminate carbon dioxide"));
+        test3.add(new  Question("The lymphatic/immune system is closely connected to what other body system?", "Cardiovascular", "Nervous", "Reproductive", "Endocrine"));
+        test3.add(new  Question("The largest artery in the body is the _______.", "aorta", "temporal", "carotid", "facial"));
+        test3.add(new  Question("The middle part of a muscle is called the____________.", "belly", "nuclei", "origin", "insertion"));
+        test3.add(new  Question("_________ is the science of the structure of organisms or of their parts.", "Anatomy", "Osteology", "Physiology", "Histology"));
+        test3.add(new  Question("__________ is the study of the structure, functioning, and diseases of the muscles.", "Myology", "Histology", "Physiology", "Osteology"));
+        test3.add(new  Question("Keeping the wrist in what position will help to prevent injuries?", "Straight", "Locked", "Bent", "Flexed"));
+        test3.add(new  Question("What percentage of blood is water?", "80 percent", "50 percent", "25 percent", "63 percent"));
+        test3.add(new  Question("The muscular system comprises what percentage of the body’s weight?", "40 to 50 percent", "80 percent", "25 percent", "15 to 20 percent"));
+        test3.add(new  Question("What type of muscle is not duplicated anywhere else in the body?", "Cardiac", "Nonstriated", "Voluntary", "Smooth"));
+        test3.add(new  Question("Nonstriated muscles are found where in the body?", "Intestines", "Hands", "Face", "Heart"));
+        test3.add(new  Question("The _____________ circulation system takes deoxygenated blood to the lungs for oxygenation and waste removal and then returns that blood to the heart.", "pulmonary", "general", "cardiovascular", "systemic"));
+        test3.add(new  Question("Lymph nodes filter the lymphatic vessels, which helps __________.", "fight infection", "produce both white and red blood cells", "regulate the body’s temperature", "body movement"));
+        test3.add(new  Question("What type of tissue is found on the inside of the mouth?", "Epithelial", "Muscle", "Nerve", "Connective"));
+        test3.add(new  Question("What body system stores most of the body’s calcium supply?", "Skeletal", "Respiratory", "Circulatory", "Endocrine"));
+        test3.add(new  Question("____________ is blood plasma found in the spaces between tissue cells.", "Interstitial fluid", "Cytoplasm", "Lymph", "Nutritive fluid"));
+        test3.add(new  Question("The basic units of all living things are __________.", "cells", "bacteria", "cytoplasm", "protoplasm"));
+        test3.add(new  Question("Striated muscles are controlled by __________.", "will", "involuntary actions", "the five senses", "impulses"));
+        test3.add(new  Question("Which of the following is the process of cell reproduction when the cell divides into two identical cells?", "Mitosis", "Adipose", "Aponeurosis", "Metabolism"));
 
 
     }
@@ -191,19 +258,23 @@ public class Model {
     }
     public void setTest(int number){
         if (number == 0&&testNumber!=0){
-            questions = test1;
+            questions = wrongAnswers;
             testNumber = 0;
-            setNormalAnswersMode();
+            setWrongAnswersMode();
 
         } else if (number == 1&&testNumber!=1){
-            questions = test2;
+            questions = test1;
             testNumber = 1;
             setNormalAnswersMode();
 
         } else if (number == 2&&testNumber!=2){
-            questions = wrongAnswers;
+            questions = test2;
             testNumber = 2;
-            setWrongAnswersMode();
+            setNormalAnswersMode();
+        } else if (number == 3&&testNumber!=3){
+            questions = test3;
+            testNumber = 3;
+            setNormalAnswersMode();
         }
         testName = testNames.get(testNumber);
     }
