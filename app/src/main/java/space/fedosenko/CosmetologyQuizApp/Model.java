@@ -9,6 +9,7 @@ public class Model {
     private ArrayList<Question> wrongAnswers = new ArrayList<>();
     private boolean failedQuestions = false;
     private int testNumber;
+    private String testName;
 
 
     private Model() {
@@ -71,7 +72,34 @@ public class Model {
     private void setSecondTestQuestions(){
         questions = new ArrayList<>();
         testNumber = 2;
-        questions.add(new  Question("Which of the following will reinforce and reconstruct the hair shaft?", "Protein conditioner", "Scalp treatment", " Balancing shampoo", "Hair brushing"));
+        testName = "Infection Control";
+        questions.add(new  Question("Barbering tools and implements are designed for specific _____________.", "purposes", "barbers", "environments", "clients"));
+        questions.add(new  Question("", "", "", "", ""));
+        questions.add(new  Question("", "", "", "", ""));
+        questions.add(new  Question("", "", "", "", ""));
+        questions.add(new  Question("", "", "", "", ""));
+        questions.add(new  Question("", "", "", "", ""));
+        questions.add(new  Question("", "", "", "", ""));
+        questions.add(new  Question("", "", "", "", ""));
+        questions.add(new  Question("", "", "", "", ""));
+        questions.add(new  Question("", "", "", "", ""));
+        questions.add(new  Question("", "", "", "", ""));
+        questions.add(new  Question("", "", "", "", ""));
+        questions.add(new  Question("", "", "", "", ""));
+        questions.add(new  Question("", "", "", "", ""));
+        questions.add(new  Question("", "", "", "", ""));
+        questions.add(new  Question("", "", "", "", ""));
+        questions.add(new  Question("", "", "", "", ""));
+        questions.add(new  Question("", "", "", "", ""));
+        questions.add(new  Question("", "", "", "", ""));
+        questions.add(new  Question("", "", "", "", ""));
+        questions.add(new  Question("", "", "", "", ""));
+        questions.add(new  Question("", "", "", "", ""));
+        questions.add(new  Question("", "", "", "", ""));
+        questions.add(new  Question("", "", "", "", ""));
+        questions.add(new  Question("", "", "", "", ""));
+        questions.add(new  Question("", "", "", "", ""));
+
     }
     public void changeTestNumber(){
         if (testNumber == 1){
