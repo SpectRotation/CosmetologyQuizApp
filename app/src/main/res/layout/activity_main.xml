@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="10dp"
+
     tools:context=".MainActivity">
+
 
     <TextView
         android:id="@+id/textView"
@@ -50,7 +51,7 @@
                 android:layout_weight="1"
                 android:text="Button"
                 android:textAllCaps="false"
-                android:textSize="20dp"/>
+                android:textSize="20dp" />
 
             <Button
                 android:id="@+id/bt2"
@@ -88,6 +89,7 @@
 
                 />
         </LinearLayout>
+
     </LinearLayout>
 
     <TextView
@@ -148,22 +150,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-    <Button
-        android:id="@+id/bt_wrong_answers"
-        android:layout_width="wrap_content"
+    <Spinner
+        android:id="@+id/spinner"
+        style="@style/Widget.AppCompat.Spinner.DropDown"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Wrong answers"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/bt_change_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Second Test"
-        app:layout_constraintBottom_toBottomOf="@+id/bt_wrong_answers"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="@+id/bt_wrong_answers" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

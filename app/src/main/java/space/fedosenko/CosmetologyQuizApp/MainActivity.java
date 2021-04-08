@@ -9,22 +9,29 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     private Button button1;
     private Button button2;
     private Button button3;
     private Button button4;
-    private  Button btChangeTest;
-    private Button btWrongAnswers;
+    private Spinner spinner;
+
     private TextView textView;
     private TextView textCorrect;
     private TextView textIncorrect;
+    private LinearLayout answersLayout;
 
 
     private int [] numbers = {1,2,3,4};
@@ -32,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int incorrectCount;
     boolean wrongAnswer=false;
     Question question;
-
+    private int highlightColor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,21 +54,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button2 = findViewById(R.id.bt2);
         button3 = findViewById(R.id.bt3);
         button4 = findViewById(R.id.bt4);
-        btChangeTest = findViewById(R.id.bt_change_test);
-        btWrongAnswers = findViewById(R.id.bt_wrong_answers);
-        btWrongAnswers.setBackgroundColor(btWrongAnswers.getHighlightColor());
-        btWrongAnswers.setTextColor(Color.BLACK);
+        spinner = findViewById(R.id.spinner);
+        answersLayout = findViewById(R.id.answers);
+
+        highlightColor = button1.getHighlightColor();
+
         textView = findViewById(R.id.textView);
         textCorrect = findViewById(R.id.correct_count);
         textIncorrect= findViewById(R.id.incorrect_count);
 
-        Model.getInstance().setFirstTestQuestions();
-
+        Model.getInstance();
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, Model.getInstance().getTestNames());
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
         button1.setOnClickListener(this);
         button2.setOnClickListener(this);
         button3.setOnClickListener(this);
         button4.setOnClickListener(this);
-        btWrongAnswers.setOnClickListener(this);
+
 
 
 
@@ -107,29 +117,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     incorrectAnswerAction();
                 }
                 break;
-            case R.id.bt_change_test:
-                Model.getInstance().changeTestNumber();
-                if (Model.getInstance().getTestNumber()==1){
-                    btChangeTest.setText("First Test");
-                } else {
-                    btChangeTest.setText("Second Test");
-                }
-                break;
-            case R.id.bt_wrong_answers:
-                if(!Model.getInstance().getMode())
-                {
-                     Model.getInstance().setWrongAnswersMode();//TODO add hidding text with answers left
-
-                } else {
-                    Model.getInstance().setNormalAnswersMode();
-                }
-                Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-
-
-
-
         }
 
     }
@@ -138,10 +125,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @SuppressLint("ResourceAsColor")
     public void mix() {
 
-        button1.setBackgroundColor(btWrongAnswers.getHighlightColor());
-        button2.setBackgroundColor(btWrongAnswers.getHighlightColor());
-        button3.setBackgroundColor(btWrongAnswers.getHighlightColor());
-        button4.setBackgroundColor(btWrongAnswers.getHighlightColor());
+        button1.setBackgroundColor(highlightColor);
+        button2.setBackgroundColor(highlightColor);
+        button3.setBackgroundColor(highlightColor);
+        button4.setBackgroundColor(highlightColor);
         button1.setTextColor(Color.BLACK);
         button2.setTextColor(Color.BLACK);
         button3.setTextColor(Color.BLACK);
@@ -149,43 +136,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         wrongAnswer=false;
-
-
-                    shuffle();
+        shuffle();
 
         if(Model.getInstance().hasMore()){
             question = Model.getInstance().getNextQuestion();
-        } else {
+            TextView percent = findViewById(R.id.t_percent);
+            if(Model.getInstance().getMode()){
 
-        }
+                percent.setText("Wrong questions left: "+Model.getInstance().wrongQuestionsLeft());
+            } else {
 
+                int intPer;
+                if (incorrectCount!=0){
 
-        //Question question = new Question("Question","correct A","inc 1",  "ince 2", "ince 3");
-        TextView percent = findViewById(R.id.t_percent);
-        if(Model.getInstance().getMode()){
-            btWrongAnswers.setText("go to all questions");
-            percent.setText("Wrong questions left: "+Model.getInstance().wrongQuestionsLeft());
-        } else {
-            btWrongAnswers.setText("Fix my wrong answers");
-            int intPer;
-            if (incorrectCount!=0){
-
-                intPer = (int)(100*correctCount/(incorrectCount+correctCount));
-                percent.setText(""+intPer+" %");
+                    intPer = (int)(100*correctCount/(incorrectCount+correctCount));
+                    percent.setText(""+intPer+" %");
+                }
             }
-        }
-
-
-
-
             textView.setText(question.getQuestion());
 
             button1.setText(question.getAnswer(numbers[0]));
             button2.setText(question.getAnswer(numbers[1]));
             button3.setText(question.getAnswer(numbers[2]));
             button4.setText(question.getAnswer(numbers[3]));
+        } else {
+            questionsEndedAction();
+        }
+    }
 
 
+    public void questionsEndedAction(){
+        answersLayout.setVisibility(View.INVISIBLE);
+        textView.setText("Great Job! It looks like there's no questions left in this section. Please choose another test or repeat this one.");
+        spinner.performClick();
 
     }
     public void correctAnswerAction(){
@@ -194,6 +177,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             textCorrect.setText(""+correctCount);
 
         }
+
         if(numbers[0] == 1){
             button1.setBackgroundColor(Color.GREEN);
 
@@ -245,4 +229,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        answersLayout.setVisibility(View.VISIBLE);
+        Model.getInstance().setTest(position);
+        clearStat();
+        mix();
+
+
+    }
+    public void clearStat(){
+        correctCount=0;
+        incorrectCount=0;
+    }
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 }
