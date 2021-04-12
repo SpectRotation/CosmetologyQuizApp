@@ -141,7 +141,7 @@ public class Model {
         test2.add(new  Question("What type of hepatitis is the most difficult to kill on a surface?", "Hepatitis B.", "Hepatitis A.", "Hepatitis C.", "Hepatitis E."));
         test2.add(new  Question("Fire extinguishers should be placed where they are________.", "readily accessible", "away from clients", "locked in a safe place", "near ventilation"));
         test2.add(new  Question("How long should an item remain submerged in the disinfectant?", "10 minutes.", "20 minutes.", "60 minutes.", "2 minutes."));
-        test2.add(new  Question("Bacteria with flagella move in what type of motion?", "Snakelike.", "Rowing-like.", "Vertical.", "Snakelike."));
+        test2.add(new  Question("Bacteria with flagella move in what type of motion?", "Snakelike.", "Rowing-like.", "Vertical.", "Sudden."));
         test2.add(new  Question("Disinfectants can be safely applied to __________.", "non-porous surfaces", "nails", "skin", "hair"));
         test2.add(new  Question("You should be prepared for ____________.", "emergencies", "unattended children", "tool repair", "non-professionalism"));
         test2.add(new  Question("Staphylococci cause which of the following?", "Boils.", "Blood poisoning.", "Tetanus.", "Pneumonia."));
