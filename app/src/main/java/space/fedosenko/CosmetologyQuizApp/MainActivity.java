@@ -108,15 +108,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 if (numbers[0] == 1) {
                     button1.setBackgroundColor(correctAnswerColor);
-                    button1.refreshDrawableState();
-
 
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             correctAnswerAction();
                         }
-                    }, 2000);
+                    }, 300);
 
                 } else {
                     button1.setBackgroundColor(wrongAnswerColor);
@@ -125,7 +123,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.bt2:
                 if (numbers[1] == 1) {
-                    correctAnswerAction();
+                    button2.setBackgroundColor(correctAnswerColor);
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            correctAnswerAction();
+                        }
+                    }, 300);
                 } else {
                     button2.setBackgroundColor(wrongAnswerColor);
                     incorrectAnswerAction();
@@ -133,7 +138,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.bt3:
                 if (numbers[2] == 1) {
-                    correctAnswerAction();
+                    button3.setBackgroundColor(correctAnswerColor);
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            correctAnswerAction();
+                        }
+                    }, 300);
                 } else {
                     button3.setBackgroundColor(wrongAnswerColor);
                     incorrectAnswerAction();
@@ -141,7 +153,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.bt4:
                 if (numbers[3] == 1) {
-                    correctAnswerAction();
+                    button4.setBackgroundColor(correctAnswerColor);
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            correctAnswerAction();
+                        }
+                    }, 300);
                 } else {
                     button4.setBackgroundColor(wrongAnswerColor);
                     incorrectAnswerAction();
@@ -189,6 +208,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             questionsEndedAction();
         }
+
     }
 
 
@@ -204,26 +224,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             correctCount++;
             textCorrect.setText(""+correctCount);
 
-            Handler h =new Handler() ;
-            h.postDelayed(new Runnable() {
-                public void run() {
-                    //put your code here
-                }
-
-            }, 2000);
 
 
-        }
-
-        if(numbers[0] == 1){
-            button1.setBackgroundColor(correctAnswerColor);
-
-        } else if(numbers[1] == 1){
-            button2.setBackgroundColor(correctAnswerColor);
-        } else if(numbers[2] == 1){
-            button3.setBackgroundColor(correctAnswerColor);
-        } else if(numbers[3] == 1){
-            button4.setBackgroundColor(correctAnswerColor);
         }
         mix();
 
@@ -236,15 +238,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Model.getInstance().addWrongAnswer(question);
             incorrectCount++;
             textIncorrect.setText(""+incorrectCount);
-            if(numbers[0] == 1){
-                button1.setBackgroundColor(correctAnswerColor);
-            } else if(numbers[1] == 1){
-                button2.setBackgroundColor(correctAnswerColor);
-            } else if(numbers[2] == 1){
-                button3.setBackgroundColor(correctAnswerColor);
-            } else if(numbers[3] == 1){
-                button4.setBackgroundColor(correctAnswerColor);
-            }
             wrongAnswer=true;
         }
 
@@ -268,9 +261,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        clearStat();
+
         answersLayout.setVisibility(View.VISIBLE);
         Model.getInstance().setTest(position);
-        clearStat();
+
         mix();
 
 
@@ -278,6 +273,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void clearStat(){
         correctCount=0;
         incorrectCount=0;
+
+        textCorrect.setText(""+correctCount);
+        textIncorrect.setText(""+incorrectCount);
     }
     @Override
     public void onNothingSelected(AdapterView<?> parent) {

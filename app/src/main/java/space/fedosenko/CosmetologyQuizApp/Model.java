@@ -236,6 +236,7 @@ public class Model {
 
 
     }
+
     public Question getNextQuestion() {
         Random random = new Random();
 
@@ -257,6 +258,7 @@ public class Model {
 
     }
     public void setTest(int number){
+        setQuestions();
         if (number == 0&&testNumber!=0){
             questions = wrongAnswers;
             testNumber = 0;
