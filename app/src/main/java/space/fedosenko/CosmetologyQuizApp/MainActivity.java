@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -19,6 +22,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
@@ -32,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView textCorrect;
     private TextView textIncorrect;
     private LinearLayout answersLayout;
+    private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
 
 
     private int [] numbers = {1,2,3,4};
@@ -39,7 +48,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int incorrectCount;
     boolean wrongAnswer=false;
     Question question;
-    private int highlightColor;
+    private int wrongAnswerColor;
+    private int correctAnswerColor;
+    private int standardAnswerColor;
+    private Drawable test;
+    private Button saveBt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,10 +67,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button2 = findViewById(R.id.bt2);
         button3 = findViewById(R.id.bt3);
         button4 = findViewById(R.id.bt4);
+
         spinner = findViewById(R.id.spinner);
         answersLayout = findViewById(R.id.answers);
 
-        highlightColor = button1.getHighlightColor();
+
+        correctAnswerColor = Color.GREEN;
+        wrongAnswerColor = Color.RED;
+
 
         textView = findViewById(R.id.textView);
         textCorrect = findViewById(R.id.correct_count);
@@ -87,10 +104,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view){
         switch (view.getId()){
             case R.id.bt1:
+                button1.setBackgroundColor(correctAnswerColor);
+
                 if (numbers[0] == 1) {
-                    correctAnswerAction();
+                    button1.setBackgroundColor(correctAnswerColor);
+                    button1.refreshDrawableState();
+
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            correctAnswerAction();
+                        }
+                    }, 2000);
+
                 } else {
-                    button1.setBackgroundColor(Color.RED);
+                    button1.setBackgroundColor(wrongAnswerColor);
                     incorrectAnswerAction();
                 }
                 break;
@@ -98,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (numbers[1] == 1) {
                     correctAnswerAction();
                 } else {
-                    button2.setBackgroundColor(Color.RED);
+                    button2.setBackgroundColor(wrongAnswerColor);
                     incorrectAnswerAction();
                 }
                 break;
@@ -106,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (numbers[2] == 1) {
                     correctAnswerAction();
                 } else {
-                    button3.setBackgroundColor(Color.RED);
+                    button3.setBackgroundColor(wrongAnswerColor);
                     incorrectAnswerAction();
                 }
                 break;
@@ -114,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (numbers[3] == 1) {
                     correctAnswerAction();
                 } else {
-                    button4.setBackgroundColor(Color.RED);
+                    button4.setBackgroundColor(wrongAnswerColor);
                     incorrectAnswerAction();
                 }
                 break;
@@ -123,17 +152,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    @SuppressLint("ResourceAsColor")
+
     public void mix() {
 
-        button1.setBackgroundColor(highlightColor);
-        button2.setBackgroundColor(highlightColor);
-        button3.setBackgroundColor(highlightColor);
-        button4.setBackgroundColor(highlightColor);
-        button1.setTextColor(Color.BLACK);
-        button2.setTextColor(Color.BLACK);
-        button3.setTextColor(Color.BLACK);
-        button4.setTextColor(Color.BLACK);
+        button1.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        button2.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        button3.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        button4.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+
 
 
         wrongAnswer=false;
@@ -150,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 int intPer;
                 if (incorrectCount!=0){
 
-                    intPer = (int)(100*correctCount/(incorrectCount+correctCount));
+                    intPer = 100*correctCount/(incorrectCount+correctCount);
                     percent.setText(""+intPer+" %");
                 }
             }
@@ -174,20 +200,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     public void correctAnswerAction(){
         if (!wrongAnswer) {
+
             correctCount++;
             textCorrect.setText(""+correctCount);
+
+            Handler h =new Handler() ;
+            h.postDelayed(new Runnable() {
+                public void run() {
+                    //put your code here
+                }
+
+            }, 2000);
+
 
         }
 
         if(numbers[0] == 1){
-            button1.setBackgroundColor(Color.GREEN);
+            button1.setBackgroundColor(correctAnswerColor);
 
         } else if(numbers[1] == 1){
-            button2.setBackgroundColor(Color.GREEN);
+            button2.setBackgroundColor(correctAnswerColor);
         } else if(numbers[2] == 1){
-            button3.setBackgroundColor(Color.GREEN);
+            button3.setBackgroundColor(correctAnswerColor);
         } else if(numbers[3] == 1){
-            button4.setBackgroundColor(Color.GREEN);
+            button4.setBackgroundColor(correctAnswerColor);
         }
         mix();
 
@@ -201,13 +237,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             incorrectCount++;
             textIncorrect.setText(""+incorrectCount);
             if(numbers[0] == 1){
-                button1.setBackgroundColor(Color.GREEN);
+                button1.setBackgroundColor(correctAnswerColor);
             } else if(numbers[1] == 1){
-                button2.setBackgroundColor(Color.GREEN);
+                button2.setBackgroundColor(correctAnswerColor);
             } else if(numbers[2] == 1){
-                button3.setBackgroundColor(Color.GREEN);
+                button3.setBackgroundColor(correctAnswerColor);
             } else if(numbers[3] == 1){
-                button4.setBackgroundColor(Color.GREEN);
+                button4.setBackgroundColor(correctAnswerColor);
             }
             wrongAnswer=true;
         }

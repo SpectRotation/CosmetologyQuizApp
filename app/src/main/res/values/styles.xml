@@ -4,7 +4,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">#B07DB86F</item>
+        <item name="colorAccent">#B0D7CFE6</item>
     </style>
 
 </resources>
