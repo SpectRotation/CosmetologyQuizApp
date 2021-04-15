@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView textCorrect;
     private TextView textIncorrect;
     private LinearLayout answersLayout;
-    private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
 
 
     private int [] numbers = {1,2,3,4};
@@ -50,9 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Question question;
     private int wrongAnswerColor;
     private int correctAnswerColor;
-    private int standardAnswerColor;
-    private Drawable test;
-    private Button saveBt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,10 +86,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button2.setOnClickListener(this);
         button3.setOnClickListener(this);
         button4.setOnClickListener(this);
-
-
-
-
 
         mix();
 
