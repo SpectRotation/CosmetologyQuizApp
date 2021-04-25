@@ -5,9 +5,12 @@ import java.util.Random;
 
 public class Model {
     private static Model instance = new Model();
-    private ArrayList<Question> test1 = new ArrayList<>();
-    private ArrayList<Question> test2 = new ArrayList<>();
-    private ArrayList<Question> test3 = new ArrayList<>();
+    private ArrayList<Question> test1;
+    private ArrayList<Question> test2;
+    private ArrayList<Question> test3;
+    private ArrayList<Question> test4;
+
+
     private ArrayList<Question>  questions;
     private ArrayList<Question> wrongAnswers = new ArrayList<>();
     private boolean failedQuestions = false;
@@ -22,6 +25,7 @@ public class Model {
         testNames.add("First Test");
         testNames.add("Infection Control");
         testNames.add("Anatomy and Physiology");
+        testNames.add("Skin Structure, Disorders, and Disease");
 
         setQuestions();
         questions = test1;
@@ -35,7 +39,11 @@ public class Model {
     }
 
 
-    public void setQuestions() {
+    private void setQuestions() {
+        test1 = new ArrayList<>();
+        test2 = new ArrayList<>();
+        test3 = new ArrayList<>();
+        test4 = new ArrayList<>();
        test1.add(new  Question("Which of the following will reinforce and reconstruct the hair shaft?", "Protein conditioner", "Scalp treatment", " Balancing shampoo", "Hair brushing"));
        test1.add(new Question("When damaged, which of the following will cause the hair growth to be inhibited?", "Papilla", "Shaft", "Cuticle", "Arrector pili"));
        test1.add(new Question("A condition caused by an infestation of head lice is", "pediculous capitalis", "tinea barbae", "scabies", "tinea capitis"));
@@ -234,7 +242,78 @@ public class Model {
         test3.add(new  Question("Striated muscles are controlled by __________.", "will", "involuntary actions", "the five senses", "impulses"));
         test3.add(new  Question("Which of the following is the process of cell reproduction when the cell divides into two identical cells?", "Mitosis", "Adipose", "Aponeurosis", "Metabolism"));
 
+        test4.add(new Question("One of the most prominent characteristics of aged skin is its loss of________.","elasticity","texture","softness","color"));
+        test4.add(new Question("Which of the following is a form of seborrheic dermatitis?","Dandruff","Eczema","Miliaria rubra","Ivy dermatitis"));
+        test4.add(new Question("__________ are irregularly shaped dark spots.","Acne","Vesicles","Melanomas","Lesions"));
+        test4.add(new Question("Which of the following conditions can be life threatening?","Hyperhidrosis","Anhidrosis","Miliaria rubra","Bromhidrosis"));
+        test4.add(new Question("With what condition is the hair silky white and the eyes pink?","Albinism","Hyperpigmentation","Tan","Nevus"));
+        test4.add(new Question("The process that causes skin cells to shed begins in which skin layer?","stratum corneum","stratum lucidum","stratum spinosum","Stratum germinativum"));
+        test4.add(new Question("Any unusual lesions on the skin or on the scalp could be a sign of a ___________.","macule","wheal","skin cancer","vesicle"));
+        test4.add(new Question("What layer of skin is the deepest layer of the epidermis?","Stratum germinativum","stratum lucidum","stratum granulosum","stratum corneum"));
+        test4.add(new Question("Lentigines is the technical term for ___________.","a birthmark","a tan","the mask of pregnancy","freckles"));
+        test4.add(new Question("The outermost layer of the epidermis is covered with a thin layer of sebum, which renders it _________.","elastic","waterproof","firm","rigid"));
+        test4.add(new Question("Which of the following is commonly referred to as liver spots in older adults?","Lentigines","Chloasma","Nevus","Albinism"));
+        test4.add(new Question("What body system controls the activity of sweat glands?","Nervous","Endocrine","Lymphatic/immune","Circulatory"));
+        test4.add(new Question("The most common and least severe skin cancer is_________.","Basal melanoma.","Squamous cell carcinoma.","Malignant melanoma.","Basal cell carcinoma."));
+        test4.add(new Question("Small, cone-shaped projections of elastic tissue are called ______.","papillae","goose bumps","cutis","melanocytes"));
+        test4.add(new Question("The color of the skin, whether fair or dark, depends on genetics and _________.","melanin","keratin","collagen","elastin"));
+        test4.add(new Question("____________ is the absence of pigment, resulting in light or white splotches.","Hypopigmentation","Lentigines","Hyperpigmentation","Nevus"));
+        test4.add(new Question("Which of the following results in foul-smelling perspiration?","Bromhidrosis","Hyperhidrosis","Anhidrosis","Miliaria rubra"));
+        test4.add(new Question("Any change in a mole requires____________","medical attention","protection from the sun","removal","exfoliation"));
+        test4.add(new Question("Processes such as the _________ of sweat cool the body.","stimulation","sensation","evaporation","absorption"));
+        test4.add(new Question("Grade II acne has_________________.","cysts with comedones","minor breakouts","redness and inflammation","many closed comedones"));
+        test4.add(new Question("A flat spot or discoloration on the skin is a __________.","macule","cyst","nodule","vesicle"));
+        test4.add(new Question("One of the appendages of the skin are the___________ glands.","sweat","pituitary","thyroid","thymus"));
+        test4.add(new Question("The epidermis contains no _________.","blood vessels","keratin","nerve endings","oil"));
+        test4.add(new Question("A sebaceous cyst is a large, protruding pocket-like lesion filled with _______.","lymph","blood","pus","sebum"));
+        test4.add(new Question("When sebum becomes hardened and aduct becomes blocked, what is formed?","A blackhead","Wrinkles","A whitehead","Brown-black pigment"));
+        test4.add(new Question("Which of the following is caused by a virus and is infectious?","Verruca","Mole","Callus","Skin tag"));
+        test4.add(new Question("The American Cancer Society recommends using the ABCDE Cancer Checklist. What does the “B” stand for?","Border","Blood","Brown","Basal"));
+        test4.add(new Question("Which of the following occurs when irritating substances temporarily damage the epidermis?","Irritant contact dermatitis","Allergic contact dermatitis","Eczema","Psoriasis"));
+        test4.add(new Question("What type of skin cancer is characterized by light or pearly nodules?","Basal melanoma.","Squamous cell carcinoma.","Malignant melanoma.","Basal cell carcinoma."));
+        test4.add(new Question("Blisters and itching develop soon after contact with ___________.","poison oak","chemicals","tints","herpes"));
+        test4.add(new Question("An open comedo is also known as a(n) _______.","whitehead","blackhead","birthmark","acne"));
+        test4.add(new Question("Sebum secretion is affected by ______________.","hormones","heat","salt","minor injuries"));
+        test4.add(new Question("____________is caused by exposure to excessive heat.","Hyperhidrosis","Bromhidrosis","Anhidrosis","Miliaria rubra"));
+        test4.add(new Question("Large dark hairs often occur in ________.","warts","moles","skin tags","corns"));
+        test4.add(new Question("An open lesion on the skin or mucous membrane of the body is a(n)________.","crust","fissure","scale","ulcer"));
+        test4.add(new Question("Which of the following skin layers is responsible for the growth of the epidermis?","stratum germinativum","stratum lucidum","stratum spinosum","stratum corneum"));
+        test4.add(new Question("The outer layer of the epidermis is the __________.","stratum corneum","stratum granulosum","stratum lucidum","stratum spinosum"));
+        test4.add(new Question("What type of nerve fibers regulates the excretion of perspiration from the sweat glands?","Secretory","Sensory","Surface","Motor"));
+        test4.add(new Question("What type of skin cancer has a 90% survival rate with early diagnosis and treatment?","Basal cell carcinoma","Squamous cell carcinoma","Malignant melanoma","Basal melanoma"));
+        test4.add(new Question("Using sunscreen with an _______ when being in the sun is necessary to reduce the risk of cell and tissue damage.","SPF30","SPF15","SPF25","SPF75"));
+        test4.add(new Question("The skin responds to heat, cold, touch, pressure, pain, and movement through its ____________nerve endings.","sensory","secretory","motor","autonomic"));
+        test4.add(new Question("An example of a vesicle is ________.","poison oak","acne","cancer","a wart"));
+        test4.add(new Question("The sebaceous glands of the skin are connected to the ______.","hair follicles","palms","soles","ducts"));
+        test4.add(new Question("The mask of pregnancy is also known as _____________.","chloasma","leukoderma","albinism","hypopigmentation"));
+        test4.add(new Question("The American Cancer Society recommends using the ABCDE Cancer Checklist. What does the “C” stand for?","Color","Character","Cell","Carcinoma"));
+        test4.add(new Question("Recent research suggests that what disorder is part of an autoimmune disease?","Chloasma","Vitiligo","Tan","Stain"));
+        test4.add(new Question("Herpes simplex II occurs __________.","on the lips","below the waist","in the nostrils","on the face"));
+        test4.add(new Question("What is caused by continued, repeated pressure or friction on any part of the skin?","Callus","Mole","Skin tag","Wart"));
+        test4.add(new Question("Rosacea is a chronic condition that appears primarily _________.","on the cheeks and nose","below the waist","on the scalp","on the back"));
+        test4.add(new Question("Skin with ________ must be protected from overexposure to the sun.","hyperpigmentation","a nevus","vitiligo","a stain"));
+        test4.add(new Question("The reticular layer of the dermis contains __________.","hair follicles","tactile corpuscles","melanin","papillae"));
+        test4.add(new Question("Which of the following are commonly associated with newborn babies?","Closed comedos","Milia","Blackheads","Ruptured follicles"));
+        test4.add(new Question("Skin tags occur most frequently on the___________.","face","hands and feet","neck and chest","legs and arms"));
+        test4.add(new Question("The American Cancer Society recommends using the ABCDE Cancer Checklist. What does the “E” stand for?","Evolution","Environment","Examination","Epidermis"));
+        test4.add(new Question("What type of skin cancer is characterized by black or dark brown patches that may appear uneven in texture, jagged, or raised?","Malignant melanoma.","Basal cell carcinoma.","Squamous cell carcinoma.","Basal cell melanoma."));
+        test4.add(new Question("What type of cancer is 100% fatal if left untreated?","Malignant melanoma.","Basal cell carcinoma.","Squamous cell carcinoma.","Basal melanoma."));
+        test4.add(new Question("___________tissue is a layer of fatty tissue found below the dermis.","Adipose","Fibrous","Connective","Elastic"));
+        test4.add(new Question("Propionibacterium acne occurs when obstructed follicles are deprived of ________.","sebum","blood","oxygen","lymphatic fluid"));
+        test4.add(new Question("Which of the following might be caused by a burn?","A tan","Leukoderma","A stain","Vitiligo"));
+        test4.add(new Question("A bulla is a(n) ____________________.","small blister or sac containing clear fluid","abnormal mass varying in size, shape, and color","large blister containing a watery fluid","liver spot"));
+        test4.add(new Question("A verruca is also known as a ____________.","wart","keratoma","skin tag","mole"));
+        test4.add(new Question("The American Cancer Society recommends using the ABCDE Cancer Checklist. What does the “D” stand for?","Diameter","Density","Dermatologist","Diagnosis"));
+        test4.add(new Question("Sores that do not heal could be a sign of _______.","skin cancer","acne","lentigines","nevus"));
+        test4.add(new Question("The American Cancer Society recommends using the ABCDE Cancer Checklist. What does the “A” stand for?","Asymmetry","Appearance","Aggressiveness","Age"));
+        test4.add(new Question("What can cause an excoriation?","Scratching","Excessive dandruff","Post-operative repair","Severely chapped hands"));
+        test4.add(new Question("What causes a wheal?","Poison ivy","Cancer","Impetigo","Mosquito bite"));
 
+
+
+    }
+    public int questionsLeft(){
+        return questions.size();
     }
 
     public Question getNextQuestion() {
@@ -258,6 +337,7 @@ public class Model {
 
     }
     public void setTest(int number){
+
         setQuestions();
         if (number == 0&&testNumber!=0){
             questions = wrongAnswers;
@@ -276,6 +356,10 @@ public class Model {
         } else if (number == 3&&testNumber!=3){
             questions = test3;
             testNumber = 3;
+            setNormalAnswersMode();
+        }else if (number == 4&&testNumber!=4){
+            questions = test4;
+            testNumber = 4;
             setNormalAnswersMode();
         }
         testName = testNames.get(testNumber);

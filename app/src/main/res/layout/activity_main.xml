@@ -160,4 +160,13 @@
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/tx_questions_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

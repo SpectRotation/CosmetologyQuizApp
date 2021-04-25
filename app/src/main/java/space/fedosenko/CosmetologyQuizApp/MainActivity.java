@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView textView;
     private TextView textCorrect;
     private TextView textIncorrect;
+    private TextView textLeft;
     private LinearLayout answersLayout;
 
 
@@ -76,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textView = findViewById(R.id.textView);
         textCorrect = findViewById(R.id.correct_count);
         textIncorrect= findViewById(R.id.incorrect_count);
+        textLeft = findViewById(R.id.tx_questions_left);
 
         Model.getInstance();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, Model.getInstance().getTestNames());
@@ -179,6 +181,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if(Model.getInstance().hasMore()){
             question = Model.getInstance().getNextQuestion();
+            textLeft.setText(""+Model.getInstance().questionsLeft());
             TextView percent = findViewById(R.id.t_percent);
             if(Model.getInstance().getMode()){
 
@@ -232,6 +235,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             incorrectCount++;
             textIncorrect.setText(""+incorrectCount);
             wrongAnswer=true;
+            if(numbers[0]==1){
+                button1.setBackgroundColor(correctAnswerColor);
+            } else if (numbers[1]==1){
+                button2.setBackgroundColor(correctAnswerColor);
+            }else if (numbers[2]==1){
+                button3.setBackgroundColor(correctAnswerColor);
+            }
+            else if (numbers[3]==1){
+                button3.setBackgroundColor(correctAnswerColor);
+            }
         }
 
 
