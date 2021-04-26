@@ -99,8 +99,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view){
         switch (view.getId()){
             case R.id.bt1:
-                button1.setBackgroundColor(correctAnswerColor);
-
                 if (numbers[0] == 1) {
                     button1.setBackgroundColor(correctAnswerColor);
 
@@ -243,7 +241,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 button3.setBackgroundColor(correctAnswerColor);
             }
             else if (numbers[3]==1){
-                button3.setBackgroundColor(correctAnswerColor);
+                button4.setBackgroundColor(correctAnswerColor);
             }
         }
 
