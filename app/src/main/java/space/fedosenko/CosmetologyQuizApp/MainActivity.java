@@ -21,6 +21,7 @@ import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView textIncorrect;
     private TextView textLeft;
     private LinearLayout answersLayout;
-
+    private ArrayList<String> testNames;
 
     private int [] numbers = {1,2,3,4};
     int correctCount;
@@ -53,6 +54,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -70,17 +73,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         answersLayout = findViewById(R.id.answers);
 
 
-        correctAnswerColor = Color.GREEN;
-        wrongAnswerColor = Color.RED;
+        correctAnswerColor = Color.rgb(153, 204, 0);
+        wrongAnswerColor = Color.rgb(235,108,3);
 
 
         textView = findViewById(R.id.textView);
         textCorrect = findViewById(R.id.correct_count);
         textIncorrect= findViewById(R.id.incorrect_count);
         textLeft = findViewById(R.id.tx_questions_left);
-
         Model.getInstance();
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, Model.getInstance().getTestNames());
+
+        Model.getInstance().shareContext(this);
+
+        testNames = Model.getInstance().getTestNames();
+        Model.getInstance().setTest(testNames.get(0));
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, testNames);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
@@ -268,7 +277,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         clearStat();
 
         answersLayout.setVisibility(View.VISIBLE);
-        Model.getInstance().setTest(position);
+        Model.getInstance().setTest(testNames.get(position));
 
         mix();
 
