@@ -6,17 +6,12 @@ import android.content.SharedPreferences;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Random;
 
 import static android.content.Context.MODE_PRIVATE;
 
 public class Model {
     private static Model instance;
-    private ArrayList<Question> test1;
-    private ArrayList<Question> test2;
-    private ArrayList<Question> test3;
-    private ArrayList<Question> test4;
     private Context mContext;
 
     private Topic topic;
@@ -27,7 +22,7 @@ public class Model {
     private String testName;
     private ArrayList<String> testNames = new ArrayList<>();
     private SharedPreferences  mPrefs;
-
+    private ArrayList<Topic> topics;
     private Model() {
 
         testNames.add("Infection Control");
@@ -38,22 +33,8 @@ public class Model {
         testNames.add("Implements, Tools, and Equipment");
         testNames.add("Wrong Answers");
 
-
     }
 
-    private void initAllTopics(){
-        ArrayList<Topic> topics = setQuestions();
-        SharedPreferences.Editor prefsEditor = mPrefs.edit();
-        Gson gson;
-        String json;
-        for (int i = 0; i < testNames.size(); i++) {
-            gson = new Gson();
-            json = gson.toJson(topics.get(i));
-            prefsEditor.putString(topics.get(i).getName(), json);
-
-        }
-        prefsEditor.apply();
-    }
     public static Model getInstance() {
         if (instance == null) {
             instance = new Model();
@@ -62,10 +43,9 @@ public class Model {
     }
 
 
-
     private ArrayList<Topic> setQuestions() {
 
-        ArrayList<Topic> topics = new ArrayList<>();
+        topics = new ArrayList<>();
 
         for (int i = 0; i < testNames.size(); i++) {
             topics.add(new Topic(testNames.get(i)));
@@ -491,19 +471,47 @@ public class Model {
         }
 
     }
-    public void setTest(String name){
+
+
+    private void initializeQuestions(){
+
+        topics = setQuestions();
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        Gson gson;
+        String json;
+        for (int i = 0; i < testNames.size(); i++) {
+            gson = new Gson();
+            json = gson.toJson(topics.get(i));
+            prefsEditor.putString(topics.get(i).getName(), json);
+
+        }
+        prefsEditor.apply();
+
+
+    }
+    private void initTopics(){
+        topics = new ArrayList<>();
         mPrefs = mContext.getSharedPreferences("MyObject", MODE_PRIVATE);
         if (mPrefs == null){
-            initAllTopics();
+            initializeQuestions();
+            return;
         }
-        Gson gson = new Gson();
+        for (int i = 0; i < testNames.size(); i++) {
+            String name = testNames.get(i);
+            if (!mPrefs.contains(name)){
+                initializeQuestions();
+                return;
+            }
+            Gson gson = new Gson();
+            String json = mPrefs.getString(name, "error");
+            topic = gson.fromJson(json, Topic.class);
+            topics.add(topic);
+        }
 
 
-        if (!mPrefs.contains(name)){
-            initAllTopics();
-        }
-        String json = mPrefs.getString(name, "error");
-        topic = gson.fromJson(json, Topic.class);
+    }
+    public void setTest(String name){
+        topic = topics.get(testNames.indexOf(name));
         questions = topic.getQuestions();
         if(name.equals(testNames.get(testNames.size()-1))){
             setWrongAnswersMode();
@@ -518,6 +526,11 @@ public class Model {
         }else{
             return !(questions.isEmpty());
         }
+    }
+    public ArrayList<Topic> getTopics(Context context){
+        mContext = context;
+        initTopics();
+        return topics;
     }
 
     public void addWrongAnswer(Question question) {

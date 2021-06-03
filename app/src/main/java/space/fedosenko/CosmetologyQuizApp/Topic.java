@@ -1,5 +1,7 @@
 package space.fedosenko.CosmetologyQuizApp;
 
+import android.os.Parcelable;
+
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;

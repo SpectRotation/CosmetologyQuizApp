@@ -29,13 +29,12 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button button1;
     private Button button2;
     private Button button3;
     private Button button4;
-    private Spinner spinner;
 
     private TextView textView;
     private TextView textCorrect;
@@ -69,7 +68,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button3 = findViewById(R.id.bt3);
         button4 = findViewById(R.id.bt4);
 
-        spinner = findViewById(R.id.spinner);
         answersLayout = findViewById(R.id.answers);
 
 
@@ -82,16 +80,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textIncorrect= findViewById(R.id.incorrect_count);
         textLeft = findViewById(R.id.tx_questions_left);
         Model.getInstance();
-
         Model.getInstance().shareContext(this);
 
+
+        //Model.getInstance().setTest(testNames.get(0));
         testNames = Model.getInstance().getTestNames();
-        Model.getInstance().setTest(testNames.get(0));
 
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, testNames);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
 
         button1.setOnClickListener(this);
         button2.setOnClickListener(this);
@@ -218,7 +213,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void questionsEndedAction(){
         answersLayout.setVisibility(View.INVISIBLE);
         textView.setText("Great Job! It looks like there's no questions left in this section. Please choose another test or repeat this one.");
-        spinner.performClick();
+
 
     }
     public void correctAnswerAction(){
@@ -272,17 +267,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        clearStat();
 
-        answersLayout.setVisibility(View.VISIBLE);
-        Model.getInstance().setTest(testNames.get(position));
-
-        mix();
-
-
-    }
     public void clearStat(){
         correctCount=0;
         incorrectCount=0;
@@ -290,8 +275,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textCorrect.setText(""+correctCount);
         textIncorrect.setText(""+incorrectCount);
     }
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
 
-    }
+
 }
