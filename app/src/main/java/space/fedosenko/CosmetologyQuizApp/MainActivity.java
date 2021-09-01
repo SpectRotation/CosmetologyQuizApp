@@ -97,7 +97,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
+    @Override
+    protected void onDestroy() {
 
+        super.onDestroy();
+        Model.getInstance().getTopic().restoreQuestionOnDestroy(question);
+        Model.getInstance().saveData();
+    }
 
     @Override
     public void onClick(View view){
@@ -213,7 +219,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void questionsEndedAction(){
         answersLayout.setVisibility(View.INVISIBLE);
         textView.setText("Great Job! It looks like there's no questions left in this section. Please choose another test or repeat this one.");
-
+        int grade = correctCount*100/(incorrectCount+correctCount);
+        Model.getInstance().getTopic().addGrade(grade);
 
     }
     public void correctAnswerAction(){
@@ -276,5 +283,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textIncorrect.setText(""+incorrectCount);
     }
 
-
+    @Override
+    public void onBackPressed() {
+        Model.getInstance().getTopic().restoreQuestionOnDestroy(question);
+        Model.getInstance().saveData();
+        super.onBackPressed();
+        Intent intent = new Intent(this, StartingMenu.class);
+        this.startActivity(intent);
+    }
 }

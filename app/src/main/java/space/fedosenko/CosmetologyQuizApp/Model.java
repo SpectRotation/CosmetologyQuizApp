@@ -2,12 +2,14 @@ package space.fedosenko.CosmetologyQuizApp;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Random;
 
+import static android.content.ContentValues.TAG;
 import static android.content.Context.MODE_PRIVATE;
 
 public class Model {
@@ -15,22 +17,27 @@ public class Model {
     private Context mContext;
 
     private Topic topic;
-    private ArrayList<Question>  questions;
     private ArrayList<Question> wrongAnswers = new ArrayList<>();
     private boolean failedQuestions = false;
     private int testNumber;
     private String testName;
-    private ArrayList<String> testNames = new ArrayList<>();
+    private ArrayList<String> testNames;
     private SharedPreferences  mPrefs;
     private ArrayList<Topic> topics;
     private Model() {
-
+        testNames = new ArrayList<>();
         testNames.add("Infection Control");
         testNames.add("Anatomy and Physiology");
         testNames.add("Skin Structure, Disorders, and Disease");
         testNames.add("Properties and Disorders of the Hair");
         testNames.add("Basics of Chemistry");
         testNames.add("Implements, Tools, and Equipment");
+
+        testNames.add("Women's Haircutting and Styling");
+        testNames.add("Haircoloring and Lightening");
+        testNames.add("Shaving");
+        testNames.add("Men's facial");
+        testNames.add("General Test");
         testNames.add("Wrong Answers");
 
     }
@@ -442,11 +449,294 @@ public class Model {
         topics.get(5).addQuestion(new Question("What type of razor finish is usually the choice of the discriminating barber?","Crocus","Plated nickel","Plain","Plated silver"));
         topics.get(5).addQuestion(new Question("The razor of choice for professional barbering is the _________ razor.","straight","safety","detachable-blade","cordless"));
 
+        topics.get(6).addQuestion(new Question("Once the hair is dry and the graduated cut is completed, detail the _______.", "perimeter", "bob line", "interior", "bang area"));
+        topics.get(6).addQuestion(new Question("When you complete a blunt cut, you should see an even, ________ line all the way around the head.", "horizontal", "wedge-shaped", "vertical", "graduated"));
+        topics.get(6).addQuestion(new Question("__________ is a technique used to keep curly hair smooth and straight while retaining a beautiful shape.", "Hair wrapping", "Finger waving", "Blowdry styling", "Thermal waving"));
+        topics.get(6).addQuestion(new Question("Thermal hair straightening is also known as __________.", "hair molding", "hair wrapping", "hair pressing", "thermal waving"));
+        topics.get(6).addQuestion(new Question("The blunt cut is also known as a ________cut.", "one-length", "wedge", "stacked", "uniform-layered"));
+        topics.get(6).addQuestion(new Question("On-base roller placement sits directly on the base and produces what type of curl?", "Full volume", "Tight", "Pin", "Loose"));
+        topics.get(6).addQuestion(new Question("Short, tapered looks in men's cutting appear more______ in their overall form.", "angular", "rugged", "lived-in", "soft"));
+        topics.get(6).addQuestion(new Question("Which of the following are secured with a hair clip, dried, and styled?", "Pin curls", "Plastic rollers", "Velcro rollers", "Hot rollers"));
+        topics.get(6).addQuestion(new Question("When cutting women’s hair, keep the hair ________when cutting.", "damp", "wet", "parted", "dry"));
+        topics.get(6).addQuestion(new Question("Once the long-layered haircut is dry, detail the interior and perimeter using ___________.", "deep point cutting", "slithering", "notching", "carving"));
+        topics.get(6).addQuestion(new Question("When using clippers, curly hair should be clean and ________.", "dry", "wet", "damp", "parted"));
+        topics.get(6).addQuestion(new Question("Which of the following are used to temporarily straighten hair?", "Electric flat irons", "Marcel irons", "Electric thermal irons", "Blowdryer"));
+        topics.get(6).addQuestion(new Question("For the blunt cut, you should start in the center and comb the hair to natural fall at what degree of elevation?", "0 degree", "180 degree", "90 degree", "45 degree"));
+        topics.get(6).addQuestion(new Question("Curly hair tends to graduate naturally due to the ________ and curl pattern.", "elasticity", "porosity", "texture", "density"));
+        topics.get(6).addQuestion(new Question("What is the most common elevation for a graduated cut?", "45 degrees.", "0 degrees.", "90 degrees.", "180 degrees."));
+        topics.get(6).addQuestion(new Question("Razor cuts are not recommended on what type of hair?", "Coarse, thin", "Fine, thin", "Medium, thick", "Fine, medium"));
+        topics.get(6).addQuestion(new Question("What type of hair is easier to cut with clippers?", "Thick, coarse hair.", "Extremely curly hair.", "Clean damp hair.", "Curly hair of medium density."));
+        topics.get(6).addQuestion(new Question("When __________, the blades are kept open, and only the portion of the blade near the pivot is used for cutting.", "Slicing", "Notching", "Slithering", "Point cutting"));
+        topics.get(6).addQuestion(new Question("When cutting hair with a razor, the hair must be ___________.", "damp", "parted", "wet", "dry"));
+        topics.get(6).addQuestion(new Question("Which of the following occurs when the hair is combed away from its natural fall position?", "Overdirection", "Slithering", "Texturing", "Notching"));
+        topics.get(6).addQuestion(new Question("What type of cut builds weight and volume along the perimeter of the hairstyle?", "Graduated", "Blunt", "Long-layered", "Uniform-layered"));
+        topics.get(6).addQuestion(new Question("For the uniform-layered cut, to create a guide, take a _____ profile section from the front hairline to the nape.", "1/2-inch-wide", "1 1/2-inch-wide", "1-inch-wide", "1/4-inch-wide"));
+        topics.get(6).addQuestion(new Question("Women’s styling is often more rounded and _________.", "softer", "tapered", "lived-in", "rugged"));
+        topics.get(6).addQuestion(new Question("Finger waving is the process of shaping and directing the hair into what type of pattern?", "S-shaped", "Contoured", "Spiral", "Circular"));
+        topics.get(6).addQuestion(new Question("For the graduated cut, you should begin your first section by taking the parting from the client’s natural ________ back to the crown.", "side part", "widow’s peak", "middle part", "cowlick"));
+
+
+        topics.get(7).addQuestion(new Question("What type of haircolor washes out or fades within a few weeks?", "Semipermanent", "Permanent", "Demipermanent", "Temporary"));
+        topics.get(7).addQuestion(new Question("Which of the following are not professional haircoloring products?", "Metallic dyes", "Aniline derivative tints", "Henna", "Oxidation tints"));
+        topics.get(7).addQuestion(new Question("Which of the following is an example of a single-process coloring?", "Virgin tint applications.", "Fillers and tints.", "Pre-softener and tint applications.", "Lightener and toner applications."));
+        topics.get(7).addQuestion(new Question("A(n)________ requires that a predisposition test be performed.", "aniline derivative", "metallic ingredient", "vegetable tint", "mineral dye"));
+        topics.get(7).addQuestion(new Question("Diffused melanin is called_____________.", "oxymelanin", "pheomelanin", "eumelanin", "keratin"));
+        topics.get(7).addQuestion(new Question("What type of haircolor can act as a filler in color correction?", "Demipermanent", "Semipermanent", "Permanent", "Temporary"));
+        topics.get(7).addQuestion(new Question("Which of the following is a form of highlighting?", "Streaking", "Retouching", "Pre-softening", "Tint back"));
+        topics.get(7).addQuestion(new Question("Which of the following can be used as temporary coloring for mustaches, beards, or sideburns?", "Crayons", "Color rinses", "Haircolor sprays", "Haircolor gels"));
+        topics.get(7).addQuestion(new Question("The human eye sees only how many basic colors?", "Six", "Twelve", "Nine", "Three"));
+        topics.get(7).addQuestion(new Question("Hair with uneven color distribution or pre-lightened hair may benefit from a ____________ application.", "color filler", "retouch", "virgin", "toner"));
+        topics.get(7).addQuestion(new Question("Which of the following is the most popular on-the-scalp lightener?", "Cream", "Quick", "Oil", "Powder"));
+        topics.get(7).addQuestion(new Question("What type of oil lightener removes pigment without adding color tone?", "Neutral", "Silver", "Drab", "Gold"));
+        topics.get(7).addQuestion(new Question("The chemical composition of a temporary color is_________.", "acidic", "unpredictable", "mildly alkaline", "strongly alkaline"));
+        topics.get(7).addQuestion(new Question("An example of complementary colors would be_________.", "yellow and violet", "yellow-orange", "blue-green", "red-orange"));
+        topics.get(7).addQuestion(new Question("What type of lightener is often used for a lightener retouch because it helps prevent overlapping on the previously lightened hair?", "Cream", "Speed", "Oil", "Powder"));
+        topics.get(7).addQuestion(new Question("_________is the basic name of a color.", "Hue", "Level", "Base", "Tone"));
+        topics.get(7).addQuestion(new Question("Hair is considered damaged when it exhibits____________.", "brittleness and dryness", "an inability to break easily", "smoothness to the touch", "elasticity"));
+        topics.get(7).addQuestion(new Question("Permanent haircoloring products are regarded as the best products for__________.", "covering gray hair", "toning pre-lightened hair", "acting as a filler in color correction", "neutralizing yellow or other unwanted tones"));
+        topics.get(7).addQuestion(new Question("_________ hair will appear to have more red, yellow, or orange than the intended color.", "Underlightened", "Overlightened", "Damaged", "Pre-lightened"));
+        topics.get(7).addQuestion(new Question("Traditional __________ colors usually last from six to eight shampoos.", "demipermanent", "temporary", "semipermanent", "permanent"));
+        topics.get(7).addQuestion(new Question("When washing lightened hair, you should ___________.", "use a mild shampoo and rinse with cool water", "use a strong shampoo and rinse with cool water", "use a mild shampoo and rinse with hot water", "use a strong shampoo and rinse with hot water"));
+        topics.get(7).addQuestion(new Question("Which of the following provides natural black and brown pigment to hair?", "Eumelanin", "Protein", "Lanolin", "Pheomelanin"));
+        topics.get(7).addQuestion(new Question("Hair dyed with lead will _________.", "lighten immediately", "not change color", "lighten in spots", "show no reaction at all"));
+        topics.get(7).addQuestion(new Question("Cream lighteners contain conditioning agents, thickeners, and __________.", "bluing agents", "oxygen-releasing boosters", "drabbers", "alkaline swelling agents"));
+        topics.get(7).addQuestion(new Question("A single-application permanent tint is applied on _________ hair.", "dry", "wet", "oily", "dirty"));
+        topics.get(7).addQuestion(new Question("As soon as hydrogen peroxide is mixed into the lightener formula, it begins to release________.", "oxygen", "hydrogen", "toxins", "irritants"));
+        topics.get(7).addQuestion(new Question("You should cap all bottles of developer and lightener to avoid_________.", "loss of strength", "dripping or running", "breathing in vapors", "touching of the skin"));
+        topics.get(7).addQuestion(new Question("What should you do with leftover tint?", "Discard it.", "Store it in a sealed bag.", "Set it aside for a future retouch.", "Pour it back into its original container."));
+        topics.get(7).addQuestion(new Question("When mixed together, complementary colors _________ each other.", "neutralize", "equalize", "minimize", "maximize"));
+        topics.get(7).addQuestion(new Question("Which of the following refers to the degree of concentration or amount of pigment in the color?", "Saturation", "Tone", "Hue", "Level"));
+        topics.get(7).addQuestion(new Question("The purpose of lighteners is to dissolve or remove __________.", "melanin", "protein", "lanolin", "aniline"));
+        topics.get(7).addQuestion(new Question("Soap caps can be used to_________________.", "retouch applications", "brighten existing color", "determine how the hair will react to the haircolor product", "process of coloring hair back to its natural color"));
+        topics.get(7).addQuestion(new Question("Most semipermanent colors do not contain ________and may be used right out of the bottle.", "ammonia", "oxidizers", "solvents", "surfactants"));
+        topics.get(7).addQuestion(new Question("What type of lightener is often used for a lightener retouch because it helps prevent overlapping on the previously lightened hair?", "Cream", "Speed", "Oil", "Powder"));
+        topics.get(7).addQuestion(new Question("_______ hair is the result of a reduction in the production of melanin pigments.", "Gray", "Black", "Blond", "White"));
+        topics.get(7).addQuestion(new Question("Hair treated with a compound, metallic, or other coating dye looks _______.", "dry and dull", "healthy", "shiny", "natural"));
+        topics.get(7).addQuestion(new Question("When mixed together, complementary colors _________ each other.", "neutralize", "maximize", "minimize", "duplicate"));
+        topics.get(7).addQuestion(new Question("Permanent haircolors are mixed with _____________.", "developers", "tints", "restorers", "relaxers"));
+        topics.get(7).addQuestion(new Question("Semipermanent tints do not require the use of _____________.", "hydrogen peroxide", "ammonia", "solvents", "alkaline agents"));
+        topics.get(7).addQuestion(new Question("Which of the following is an indication of the strength of the cortex?", "Elasticity", "Porosity", "Texture", "Density"));
+        topics.get(7).addQuestion(new Question("The laws of color serve as guidelines for __________ color mixing.", "harmonious", "selective", "temporary", "permanent"));
+        topics.get(7).addQuestion(new Question("Tints must be mixed with hydrogen peroxide, which activates the chemical reaction known as __________.", "oxidation", "nonoxidation", "decolorization", "stabilization"));
+        topics.get(7).addQuestion(new Question("What color do lead dyes leave the hair?", "Purple", "Green", "Gray", "Red"));
+        topics.get(7).addQuestion(new Question("Double-process haircoloring begins with hair _____________.", "lightening", "relaxing", "tinting", "toning"));
+        topics.get(7).addQuestion(new Question("You should not allow hydrogen peroxide formulations to come in contact with ________.", "metal", "plastic", "cream", "powder"));
+        topics.get(7).addQuestion(new Question("When using semipermanent color, what type of color will appear shinier due to the reflection of light?", "Warm", "Ash", "Gray", "Cool"));
+        topics.get(7).addQuestion(new Question("You should avoid breathing in vapors caused by mixing ________ and haircolor products.", "hydrogen peroxide", "alkaline swelling agents", "surfactants", "ammonia"));
+        topics.get(7).addQuestion(new Question("Cream lighteners contain conditioning agents called __________.", "bluing agents", "alkaline swelling agents", "drabbers", "tints"));
+        topics.get(7).addQuestion(new Question("What type of color will appear shinier due to the reflection of light?", "Warm", "Ash", "Cool", "Gray"));
+        topics.get(7).addQuestion(new Question("To achieve the desired lightness shade, consideration must be given to the__________.", "existing hair color", "resulting density", "existing elasticity", "new hair growth"));
+        topics.get(7).addQuestion(new Question("Which is a characteristic of semipermanent tints?", "They do not require the use of hydrogen peroxide.", "They wash out after one or two shampoos.", "They require retouching.", "They do not require a patch test."));
+        topics.get(7).addQuestion(new Question("Nonoxidizing versus oxidizing haircolor products determine a product's __________.", "colorfastness", "final outcome", "mineral dye", "degree of lightness"));
+        topics.get(7).addQuestion(new Question("Temporary color rinses can be used to_____________.", "neutralize yellow tones in white or gray hair", "quicken the action of hydrogen peroxide", "even out color processing", "create special-effects haircoloring"));
+        topics.get(7).addQuestion(new Question("What type of technique is painting a lightener or color directly onto clean, styled hair?", "Free-form", "Cap frost", "Reverse highlighting", "Foil frost"));
+        topics.get(7).addQuestion(new Question("The purpose of lighteners is to dissolve or remove the hair's natural color pigment __________.", "melanin", "lanolin", "aniline", "protein"));
+        topics.get(7).addQuestion(new Question("________ is the process of treating gray or other resistant hair to facilitate better color penetration.", "Pre-softening", "Lowlighting", "Pre-lightening", "Retouching"));
+        topics.get(7).addQuestion(new Question("Which of the following should never be used for coloring mustaches?", "Aniline derivative tints", "Hair color crayons", "Liquid tints", "Pomades"));
+        topics.get(7).addQuestion(new Question("Hair dyed with lead will _________.", "lighten immediately", "not change color", "lighten in spots", "show no reaction at all"));
+        topics.get(7).addQuestion(new Question("Lightener on the towel that is allowed to come in contact with the skin will cause _____.", "irritation", "oxidation", "decolorization", "uneven color"));
+        topics.get(7).addQuestion(new Question("Which colors are created by mixing equal amounts of two primary colors?", "Secondary", "Tertiary", "Quaternary", "Complementary"));
+        topics.get(7).addQuestion(new Question("What is the standard hydrogen peroxide volume used with many permanent color products?", "20-volume", "30-volume", "40-volume", "10-volume"));
+        topics.get(7).addQuestion(new Question("Double-process hair coloring begins with hair _____________.", "lightening", "relaxing", "toning", "tinting"));
+        topics.get(7).addQuestion(new Question("Which is an example of a tertiary color?", "Blue-green", "Orange", "Violet", "Red"));
+        topics.get(7).addQuestion(new Question("___________ lift trapped color pigments, stain, or buildup from cuticle layers.", "Oil-base dye removers", "Color oil lighteners", "Dye solvents", "Tint solvents"));
+
+        topics.get(8).addQuestion(new Question("Where should you discard used blades?", "Sharps container", "Waste paper basket", "Garbage bag", "Sealed paper bag"));
+        topics.get(8).addQuestion(new Question("You should use the thumb and_________ finger as the primary digits for stretching the skin.", "second", "ring", "little", "middle"));
+        topics.get(8).addQuestion(new Question("For a shave service, barbers should analyze the client's skin and hair _________.", "growth patterns", "color", "porosity", "texture"));
+        topics.get(8).addQuestion(new Question("What type of hair is often the result of improper hair removal by a razor, tweezers, or trimmer?", "Ingrown", "New", "Unshaven", "Curly"));
+        topics.get(8).addQuestion(new Question("Check the proportion and shape of the beard in the mirror when client is in a(n) _________position.", "sitting", "reclining", "angled", "standing"));
+        topics.get(8).addQuestion(new Question("If using a razor to shape and detail a mustache, apply ____________.", "shaving cream or gel", "a hot towel", "pH-balanced fresheners", "pH-balanced toners"));
+        topics.get(8).addQuestion(new Question("Prepare facial hair for the shave with ____________________.", "hot towels and lather", "talcum powder", "soap and water", "astringents"));
+        topics.get(8).addQuestion(new Question("For a shave service, right-handed barbers stand ____________.", "at the client's right side", "at the client's left side", "behind the client", "in front of the client"));
+        topics.get(8).addQuestion(new Question("Which finger should you use to wipe lather from the hairline?", "Thumb", "Ring finger", "Little finger", "Index finger"));
+        topics.get(8).addQuestion(new Question("What type of stroke should you use to shave the nape area?", "Freehand", "Backhand", "Reverse backhand", "Reverse freehand"));
+        topics.get(8).addQuestion(new Question("The shaving movement for a left-handed barber _______ is reverse freehand and up.", "beneath the lower lip", "across the chin from right to left", "left jawbone to grain change", "under the chin to grain change"));
+        topics.get(8).addQuestion(new Question("For a neck shave, clean the shaven part of the neckline with a towel or neck strip moistened with ___________.", "witch hazel", "pH-balanced fresheners", "hot water", "cold water"));
+        topics.get(8).addQuestion(new Question("During a shave service, you should ___________.", "use gliding strokes with the point leading", "refrain from stretching the client's skin", "keep your fingers wet", "never shift your body position"));
+        topics.get(8).addQuestion(new Question("To open the razor, grasp the ________ of the blade between the thumb and index finger.", "back", "edge", "front", "top"));
+        topics.get(8).addQuestion(new Question("Observe the hair growth pattern and shave ____________it.", "with", "opposite", "around", "against"));
+        topics.get(8).addQuestion(new Question("The application of __________ is a standard procedure in preparing the beard for shaving.", "hot towels", "pH-balanced toners", "pH-balanced fresheners", "cold lather"));
+        topics.get(8).addQuestion(new Question("For a neck shave, you will tuck a neck strip or paper towel into the neckline of drape for ________.", "wiping the razor", "the client's comfort", "catching any loose hair", "drying the nape"));
+        topics.get(8).addQuestion(new Question("Warped or loose handles may cause the blade to ___________ when closing the razor.", "pass through to the fingers", "separate by way of the pivot", "bend", "crack"));
+        topics.get(8).addQuestion(new Question("For a beard redesign, what tool do you use to create a new guide starting in the center under the chin?", "Outliner", "Razor", "Clipper", "Haircutting shears"));
+        topics.get(8).addQuestion(new Question("Trim the mustache to a desired length with________.", "an outliner", "scissors", "a straight razor", "haircutting shears"));
+        topics.get(8).addQuestion(new Question("For a shave service, repeat the steaming process if the beard is ___________.", "extremely coarse", "curly", "very fine", "very long"));
+        topics.get(8).addQuestion(new Question("______________ is when the client helps to stretch the skin by rolling his bottom lip slightly over his bottom teeth.", "Balling-the-chin", "Going against the grain", "Balling-the-lip", "Going with the grain"));
+        topics.get(8).addQuestion(new Question("For a shave service, you should test the temperature of the hot towel with ______.", "your wrist", "your forearm", "the back of your hand", "the palm of your hand"));
+        topics.get(8).addQuestion(new Question("How many degrees relative to the skin surface should you angle the razor?", "30 degrees.", "45 degrees.", "75 degrees.", "10 degrees."));
+        topics.get(8).addQuestion(new Question("When performing a beard trim, gently comb through the beard and check for ________.", "hidden moles", "gray hair", "ingrown hair", "freckles"));
+        topics.get(8).addQuestion(new Question("For beard designs on curly textured facial hair, you will trim excess hair using what technique?", "Cliper ower comb", "Outliner-over-comb", "Outliner-over-comb", "Shear-over-comb"));
+        topics.get(8).addQuestion(new Question("For a shave service, apply a skin toner or other mild astringent to ____________.", "remove residual cream product", "warm the skin", "prevent nicks", "stretch the skin"));
+        topics.get(8).addQuestion(new Question("Avoid ________ as the skin may be sensitive after the shave service.", "hot towels", "warm water", "moisturizing cream", "pH-balance toner"));
+        topics.get(8).addQuestion(new Question("You should use strokes of how many inches to avoid shaving too far from the stretching point?", "1 to 3 inches.", "1 to 1 1/2 inches.", "1/2 to 1 inch.", "3 to 4 inches."));
+        topics.get(8).addQuestion(new Question("Do not proceed with the service if the client has __________.", "a skin infection", "chapped skin", "sensitive skin", "a larger Adam's apple"));
+        topics.get(8).addQuestion(new Question("With the holding position of the razor for the reverse backhand stroke, the elbow is positioned ____________.", "downward", "forward", "upward", "outward"));
+        topics.get(8).addQuestion(new Question("You should keep the nondominant thumb and fingertips ____for stretching purposes.", "dry", "lathered", "damp", "moving"));
+        topics.get(8).addQuestion(new Question("The shaving movement for a left-handed barber from left sideburn toward the jawbone and the angle of mouth is ______________.", "freehand and down", "reverse freehand and down", "reverse freehand and up", "backhand and down"));
+        topics.get(8).addQuestion(new Question("The beard should be shaved _________.", "with the grain", "first against the grain, then with the grain", "against the grain", "across the grain"));
+        topics.get(8).addQuestion(new Question("In which stroke will you use a few short scooping strokes to shave upward from the top of the chin toward the lower lip?", "Reverse-freehand", "Reverse-backhand", "Backhand", "Freehand"));
+        topics.get(8).addQuestion(new Question("For a beard redesign, make sure the design line connects with the corners of the ____________.", "mustache outline", "ear lobes", "mouth", "sideburns"));
+        topics.get(8).addQuestion(new Question("What type of stroke will you use around the mouth, over the ears, and in other tight areas?", "Shorter", "Reverse backhand", "Long", "Modified backhand"));
+        topics.get(8).addQuestion(new Question("Which of the following refers to the way the razor is held in the barber's hand to perform a stroke movement?", "Direction", "Convention", "Relation", "Position"));
+        topics.get(8).addQuestion(new Question("When finishing the shave service, apply light facial cream or moisturizing lotion with ____________movements.", "effleurage massage", "brisk", "pétrissage massage", "rotary"));
+        topics.get(8).addQuestion(new Question("Do not perform a __________ immediately after a shave.", "deep cleansing facial", "hot towel application", "mustache trim", "beard trimming"));
+        topics.get(8).addQuestion(new Question("Shaving strokes on the upper lip are performed ___________.", "on a slight diagonal", "vertically", "on a sharp diagonal", "horizontally"));
+        topics.get(8).addQuestion(new Question("The term used to describe the correct angle of cutting with a razor is called the cutting _______.", "stroke", "position", "procedure", "movement"));
+        topics.get(8).addQuestion(new Question("For a beard trim, work left and right of center to establish design line to the ___________.", "back of the jaws", "sideburns", "mustache outline", "corners of the mouth"));
+        topics.get(8).addQuestion(new Question("The direction of hair growth creates the _______ of the hair.", "grain", "pattern", "length", "texture"));
+        topics.get(8).addQuestion(new Question("For a shave service, you should keep the client's skin___________.", "hot", "dry", "moist", "steamed"));
+
+        topics.get(9).addQuestion(new Question("What type of masks temporarily contract the skin pores?", "Clay", "Cream", "Paraffin wax", "Gel"));
+        topics.get(9).addQuestion(new Question("The T-zone section of the face incorporates the forehead, nose, and __________.", "chin area", "eyes", "jaw area", "cheek area"));
+        topics.get(9).addQuestion(new Question("When should steam be administered for a facial treatment?", "At the beginning", "In the middle", "Throughout", "At the end"));
+        topics.get(9).addQuestion(new Question("Which of the following are a moist heat modality?", "Hot towels", "Heat lamps", "Heating caps", "Lasers"));
+        topics.get(9).addQuestion(new Question("The immediate effect of massage is first noticed ____________.", "on the skin", "in blood circulation", "in the nerves", "in the muscles"));
+        topics.get(9).addQuestion(new Question("Infrared rays generally produce a(n) __________ type of heat.", "soothing", "intense", "burning", "irritating"));
+        topics.get(9).addQuestion(new Question("To perform desincrustation, what type of solution is applied to the skin's surface?", "Acid-based.", "Alkaline.", "Neutral.", "Moisturizing."));
+        topics.get(9).addQuestion(new Question("Skin type is primarily based on the amount of ____ produced in the follicles.", "oil", "hair", "water", "lymph"));
+        topics.get(9).addQuestion(new Question("What motor nerve controls chewing?", "Fifth cranial", "Accessory", "Seventh cranial", "Eleventh cranial"));
+        topics.get(9).addQuestion(new Question("The high-frequency machine can benefit the client’s skin by________________.", "stimulating blood circulation", "decreasing cell metabolism", "deoxygenating the skin", "decreasing glandular activity"));
+        topics.get(9).addQuestion(new Question("Cold causes muscles to __________.", "contract", "stretch", "relax", "expand"));
+        topics.get(9).addQuestion(new Question("Another name for the eleventh cranial nerve is the __________ nerve.", "accessory", "trifacial", "trigeminal", "facial"));
+        topics.get(9).addQuestion(new Question("What is often used to hold cream or gel masks in place over the skin?", "Gauze", "Paper towels", "Barber’s towel", "Cotton pads"));
+        topics.get(9).addQuestion(new Question("Deep vibration with a mechanical vibrator or massager can __________.", "stimulate blood circulation", "promote beard growth", "reduce muscle tone", "inhibit oil production"));
+        topics.get(9).addQuestion(new Question("What type of movements are the gentlest forms of tapotement?", "Tapping", "Hacking", "Chopping", "Slapping"));
+        topics.get(9).addQuestion(new Question("Products with an alkaline pH are considered to be ___________.", "negative", "astringents", "slightly acidic", "positive"));
+        topics.get(9).addQuestion(new Question("A benefit of a massage is that fat cells____________.", "are reduced", "are stimulated", "disappear", "are nourished"));
+        topics.get(9).addQuestion(new Question("Which of the following is an electrical current modality?", "High frequency", "Electric massager", "LED", "Microdermabrasion"));
+        topics.get(9).addQuestion(new Question("The effect of a facial service on a muscle can be calming or __________.", "stimulating", "cleansing", "softening", "contracting"));
+        topics.get(9).addQuestion(new Question("A(n)___________ is any product, procedure, or treatment that should be avoided because it may cause undesirable side effects or be harmful to the individual.", "contraindication", "precaution", "condition", "indication"));
+        topics.get(9).addQuestion(new Question("The electrodes for high-frequency machines are made of glass or __________.", "metal", "plastic", "hard rubber", "microcrystals"));
+        topics.get(9).addQuestion(new Question("Overexposure to ____________ can destroy skin tissue.", "ultraviolet rays", "prescribed preparations", "moisturizers", "massage creams"));
+        topics.get(9).addQuestion(new Question("What types of masks often contain humectants and emollients?", "Cream", "Clay", "Gel", "Paraffin wax"));
+        topics.get(9).addQuestion(new Question("_______________loosen or dissolve dead-cell buildup on the skin surface.", "Chemical exfoliants", "Astringents", "Toners", "Masks"));
+        topics.get(9).addQuestion(new Question("Maintenance and preservative care is the goal for what type of skin?", "Normal", "Combination", "Oily", "Dry"));
+        topics.get(9).addQuestion(new Question("Common carotids are located at the _________.", "sides of the neck", "top of the head", "lower region of the face", "back of the head"));
+        topics.get(9).addQuestion(new Question("Which muscles coordinate opening and closing the mouth?", "Masseter and temporalis.", "Auricularis superior and buccinator.", "Trapezius and triangularis", "Zygomaticus major and zygomaticus minor."));
+        topics.get(9).addQuestion(new Question("Which of the following can be used to treat surface wrinkles and aging skin?", "Microdermabrasion", "Desincrustation", "Cataphoresis", "Anaphoresis"));
+        topics.get(9).addQuestion(new Question("When using an electric massager, do not apply vibrations _____ as it may cause discomfort.", "over the upper lip", "on the scalp", "on the shoulders", "on the neck"));
+        topics.get(9).addQuestion(new Question("PÃ©trissage exerts a(n) ________ effect on the area being massaged.", "invigorating", "relaxing", "antiseptic", "soothing"));
+        topics.get(9).addQuestion(new Question("_________are fibrous tissues that have the ability to stretch and contract to produce body movement.", "Muscles", "Veins", "Arteries", "Nerves"));
+        topics.get(9).addQuestion(new Question("Which of the following helps to rebalance the pH of the skin?", "Skin toners", "Chemical exfoliants", "Moisturizers.", "Masks"));
+        topics.get(9).addQuestion(new Question("Which of the following muscles are in the neck?", "Platysma", "Procerus", "Corrugator", "Frontalis"));
+        topics.get(9).addQuestion(new Question("High-frequency current is also known as _________ current.", "tesla", "cathode", "galvanic", "anode"));
+        topics.get(9).addQuestion(new Question("Which method is used to perform desincrustation?", "Galvanic machine", "Vibrating", "Steaming", "Brushing"));
+        topics.get(9).addQuestion(new Question("Ultraviolet lamps ________________.", "improve blood and lymph flow", "decrease melanin production", "assist the body in producing vitamin E", "decrease the elimination of waste products"));
+        topics.get(9).addQuestion(new Question("What should a barber do if he or she recognizes that a client has a skin disease?", "Refer the client to a physician.", "Prescribe an over-the-counter remedy.", "Perform a medical diagnosis of the condition.", "Provide medical treatment."));
+        topics.get(9).addQuestion(new Question("Cleansing lotions are ____________.", "water-based emulsions", "oil-based emulsions", "alcohol-based products", "cream-based products"));
+        topics.get(9).addQuestion(new Question("Veins transport what type of blood from various parts of the body to the heart?", "Deoxygenated", "Dehydrated", "Oxygenated", "Exfoliated"));
+        topics.get(9).addQuestion(new Question("Which of the following is a chemical modality?", "Microdermabrasion", "Microcurrent", "Lasers", "LED"));
+        topics.get(9).addQuestion(new Question("What is caused by hardened masses of sebum formed inside a follicle?", "Comedones", "Dry skin", "Thin-textured skin", "Wrinkles"));
+        topics.get(9).addQuestion(new Question("Germicidal benefits of high-frequency current can be produced with __________.", "direct application only", "both direct and indirect application", "neither direct nor indirect application", "indirect application only"));
+        topics.get(9).addQuestion(new Question("For people with combination skin, the cheek and outer areas of the face tend to be ____________.", "dry", "oily", "greasy", "shiny"));
+        topics.get(9).addQuestion(new Question("Astringents may contain up to what percentage of alcohol?", "35 percent", "4 percent", "20 percent", "15 percent"));
+        topics.get(9).addQuestion(new Question("What type of modality are lasers?", "Heat.", "Electric current.", "Nerve impulse.", "Massage."));
+        topics.get(9).addQuestion(new Question("A factor that influences the formation of wrinkles is________.", "excessive dryness of the skin", "excessive oiliness of the skin", "expanding of the skin tissue", "tightening of the elastic skin fibers"));
+        topics.get(9).addQuestion(new Question("A __________ is a tender area in a muscle caused by a localized knot or spasm in the muscle fiber.", "trigger point", "motor point", "pressure point", "midpoint"));
+        topics.get(9).addQuestion(new Question("Massage manipulations on the face are usually performed with what type of movements?", "Upward", "Hacking", "Downward", "Chopping"));
+        topics.get(9).addQuestion(new Question("Which of the following is a chemical exfoliant?", "Enzyme peel", "Granular scrub", "Witch hazel", "Rolling cream"));
+        topics.get(9).addQuestion(new Question("What type of products work best on combination skin types?", "Water-based", "Water-oil based", "Acid-based", "Oil-based"));
+        topics.get(9).addQuestion(new Question("Hacking should only be used on the _____________.", "back and shoulders", "forehead", "face and neck", "scalp"));
+        topics.get(9).addQuestion(new Question("How many pairs of cranial nerves are there?", "12", "6", "18", "24"));
+        topics.get(9).addQuestion(new Question("The primary actions of high-frequency current are thermal and _______.", "antiseptic", "softening", "cleansing", "exfoliating"));
+        topics.get(9).addQuestion(new Question("Cleansing creams are used primarily to _________________.", "dissolve dirt and makeup", "soften the skin", "rebalance the pH of the skin", "tighten the skin"));
+        topics.get(9).addQuestion(new Question("Heat and moist heat on the skin causes____________.", "relaxation", "stimulation", "motion", "contraction"));
+        topics.get(9).addQuestion(new Question("Which of the following is the most stimulating form of massage?", "Percussion", "PÃ©trissage", "Effleurage", "Friction"));
+        topics.get(9).addQuestion(new Question("What muscle causes wrinkles across the forehead?", "Frontalis", "Epicranius", "Occipitalis", "Epicranial aponeurosis"));
+        topics.get(9).addQuestion(new Question("___________ is a stroking movement.", "Effleurage", "Friction", "Petrissage", "Tapotement"));
+        topics.get(9).addQuestion(new Question("Cervical nerves originate at the __________.", "spinal cord", "brain", "spinal column", "vertebrae"));
+        topics.get(9).addQuestion(new Question("The motor nerve that controls motions of the neck muscles is the _________ nerve.", "accessory", "trifacial", "trigeminal", "facial"));
+        topics.get(9).addQuestion(new Question("Which of the following is known as the facial artery?", "External maxillary", "Superficial temporal", "Posterior auricular", "Occipital"));
+        topics.get(9).addQuestion(new Question("The sensory-motor nerve that controls motions of the face, scalp, and neck is the ________.", "seventh cranial nerve", "fifth cranial nerve", "trifacial nerve", "eleventh cranial nerve"));
+        topics.get(9).addQuestion(new Question("Which of the following are vessels that transport oxygenated blood from the heart to all parts of the body?", "Arteries", "Veins", "Venules", "Capillaries"));
+        topics.get(9).addQuestion(new Question("Microcurrent is a type of _________ treatment.", "galvanic", "brushing", "infrared", "UV"));
+        topics.get(9).addQuestion(new Question("The basic facial is sometimes known as the ___________facial.", "scientific rest", "direct application", "vibratory", "indirect application"));
+        topics.get(9).addQuestion(new Question("Total exposure time for infrared rays should not exceed __________.", "5 minutes", "1 hour", "10 minutes", "30 minutes"));
+        topics.get(9).addQuestion(new Question("Which of the following would be the first skin care product to be used in a basic facial treatment?", "Cleansing cream or lotion", "Exfoliant", "Moisturizer", "Massage cream"));
+        topics.get(9).addQuestion(new Question("You should perform massage manipulations systematically and _________.", "rhythmically", "equally", "gradually", "vertically"));
+        topics.get(9).addQuestion(new Question("Which of the following is the muscle that surrounds the eye socket and closes the eyelid?", "Orbicularis oculi", "Occipitalis", "Procerus", "Corrugator"));
+        topics.get(9).addQuestion(new Question("What is sometimes relieved through massage?", "Pain", "Acute skin inflammation.", "High blood pressure", "Skin infections."));
+        topics.get(9).addQuestion(new Question("Rolling cream is not recommended for what type of skin?", "Dry", "Oily", "Normal", "Thick"));
+        topics.get(9).addQuestion(new Question("In what massage movement are the skin and flesh grasped between the thumb and fingers?", "Petrissage", "Tapotement", "Vibration", "Effleurage"));
+        topics.get(9).addQuestion(new Question("An infrared device is a type of ________modality.", "light ray", "nerve impulse", "electric current", "moist heat"));
+        topics.get(9).addQuestion(new Question("What muscle is used for grinning?", "Risorius", "Zygomaticus minor", "Zygomaticus major", "Masseter"));
+        topics.get(9).addQuestion(new Question("Oily skin is characterized by ___________.", "excess sebum production", "depressions in the skin", "not enough sebum production", "loosening of the elastic skin fibers"));
+        topics.get(9).addQuestion(new Question("Which of the following masks absorbs sebum and is used on oily and combination skin types?", "Clay", "Cream", "Paraffin wax", "Gel"));
+        topics.get(9).addQuestion(new Question("Which of the following is a form of mechanical exfoliation?", "Brushing", "Moisturizing", "Vibrating", "Steaming"));
+
+        topics.get(10).addQuestion(new Question("What are the primary digits for stretching the skin?", "Thumb and second finger", "Middle and ring fingers", "Thumb and pinky", "Second and middle fingers"));
+        topics.get(10).addQuestion(new Question("Why do we use an exfoliant?", "To remove dead cells from the skin", "To clean the skin", "To moisturize the skin", "To feed the skin"));
+        topics.get(10).addQuestion(new Question("The T-zone is the section of the face that incorporates", "Forehead, nose, and chin area", "Forehead, eyes and nose", "Forehead and nose", "Nose and chin"));
+        topics.get(10).addQuestion(new Question("What are complementary colors?", "Across from each other", "One after another", "Primary colors", "Base or tertiary colors"));
+        topics.get(10).addQuestion(new Question("Do not use hot towels on skin that is", "Chapped or blistered", "Oily", "Normal", "With lots of blackheads"));
+        topics.get(10).addQuestion(new Question("What is the level system used to analyze?", "Lightness or darkness of a color", "Porosity of a hair strand", "Texture of hair", "Length of hair"));
+        topics.get(10).addQuestion(new Question("What is the highest level of decontamination?", "Sterilization", "Desinfection", "Sanitizing", "Cleaning"));
+        topics.get(10).addQuestion(new Question("The buccinator is located between?", "Lower&Upper jaw ", "Eyebrows", "Upper jaw&nose", "Ear and neck"));
+        topics.get(10).addQuestion(new Question("How do we clean a hone?", "Water & pumice stone to remove tiny steel material", "Water & soap", "Water & brush to remove dust and debris", "Brush & piece of cloth"));
+        topics.get(10).addQuestion(new Question("What is a hone?", "Sharping block from rock or synthetic material", "Covering cloth", "Type of a straight razor", "Tone of color"));
+        topics.get(10).addQuestion(new Question("When do you use a toner?", "After lightening", "Before lightening", "While making waves", "After service is done"));
+        topics.get(10).addQuestion(new Question("How do barbers clean conventional straight razors?", "Clean, strop & little oil", "Clean, use pumice stone", "Clean and spray with oil", "Wipe & little oil"));
+        topics.get(10).addQuestion(new Question("During a scalp massage what part of your hands do you use?", "The cushion of finger tips", "Nails", "Elbows", "Palms "));
+        topics.get(10).addQuestion(new Question("Why do we drape?", "Protect clients’ skin and clothes", "Protect ourselves", "Protect furniture", "Protect client’s hair"));
+        topics.get(10).addQuestion(new Question("If your client has skin abrasion", "Don’t proceed", "Patch it", "It’s ok, follow standard procedure", "Avoid only this area"));
+        topics.get(10).addQuestion(new Question("What is the crust like clusters?", "Staphylococci", "Streptococci", "Non-pathogenic", "Spirilla"));
+        topics.get(10).addQuestion(new Question("The ph in alkaline shampoo is …", "6.0", "4.5", "8.5", "12"));
+        topics.get(10).addQuestion(new Question("When discussing Facial Treatments plans as well as products the Barbers must know?", "4 types of skin: oily, dry, normal, combination", "Texture of hair", "Porosity of hair", "Types of melanin"));
+        topics.get(10).addQuestion(new Question("Based colors are composed from what?", "Primary and secondary colors", "Primary colors", "Secondary and tertiary colors", "Secondary colors"));
+        topics.get(10).addQuestion(new Question("If hair is dry it’s due to the ", "Inactive sebaceous glands", "Lack of moisture", "High sensitivity", "Over-active sebaceous glands"));
+        topics.get(10).addQuestion(new Question("What are the symptoms of tinea favosa?", "Dry, sulfur-yellow cuplike crust on the scalp", "hair loss involving the beard area", "hair loss, dry scaly areas, redness, and itch", "Patches of skin discoloration, usually on the back, chest, neck and upper arms, which may appear lighter or darker than usual"));
+        topics.get(10).addQuestion(new Question("Tinea favosa means", "Dry, sulfur-yellow cuplike crust on the scalp (honey comb ringworm)", "hair loss, dry scaly areas, redness, and itch", "hair loss involving the beard area", "Patches of skin discoloration, usually on the back, chest, neck and upper arms, which may appear lighter or darker than usual"));
+        topics.get(10).addQuestion(new Question("What is LED", "Light emitting diode", "Light escaping diode", "Luminous eliminating diode", "Luminous escaping diode"));
+        topics.get(10).addQuestion(new Question("When applying virgin relaxer you first apply the relaxer in?", "Most resistant area or under the occipital bone", "No matter what area to start", "Least resistant area", "From frontal bone"));
+        topics.get(10).addQuestion(new Question("When performing electrotherapy treatment the barber and the client must avoid contact with?", "Metals or water", "Skin", "Hair ", "Drape "));
+        topics.get(10).addQuestion(new Question("If you have a client with broken skin what would you do", "Do not continue, refer to physician", "Avoid this broken area", "Patch it", "It’s ok, follow standard procedure"));
+        topics.get(10).addQuestion(new Question("Staphylococci is pus forming bacteria that grows in", "Clusters like bunch of grapes", "Strings of beads", "Spirals", "Spherical pairs "));
+        topics.get(10).addQuestion(new Question("When Your client has level 6 red violet and the client wants to be brown, what should you take?", "Yellow green", "Blue ", "Orange", "Violet-blue"));
+        topics.get(10).addQuestion(new Question("The study of microorganisms is called?", "Bacteriology", "Histology", "Physiology", "Anatomy"));
+        topics.get(10).addQuestion(new Question("Solutions that have a pH below 7.0 is", "Acid", "Base", "Alkaline", "Neutral"));
+        topics.get(10).addQuestion(new Question("The pH in Balancing Shampoo is", "4.5-5.5", "6.0", "7.0-8.0", "2.5-3.5"));
+        topics.get(10).addQuestion(new Question("Dry damage or over porous hair should be given?", "Reconditioning treatment", "Permanent haircoloring", "A haircut", "Regular service"));
+        topics.get(10).addQuestion(new Question("What is the pH of temporary hair color?", "2.0-4.5", "4.5-5.5", "10.0", "8.5-9.5"));
+        topics.get(10).addQuestion(new Question("Why do we recondition the hair?", "Moisturize, when hair is bridle, frizzy", "Feed the hair with vitamins", "Clean the hair from dirt", "Add some color to the tone"));
+        topics.get(10).addQuestion(new Question("How do we drape for a facial massage?", "You drape the hair and body", "No need in draping", "Drape the hair only", "Drape the body only"));
+        topics.get(10).addQuestion(new Question("What is steatoma?", "A sebaceous cyst", "Inflammation of sweat glands", "A bacterial boil", "Form of acne"));
+        topics.get(10).addQuestion(new Question("What part of the scalp supplies and nutrients to the hair for growth?", "Dermal papilla", "Arrector pili muscle", "Hair cuticle", "Oil glands"));
+        topics.get(10).addQuestion(new Question("The pH of conditioners is", "3.0-5.5", "4.0 to 6.0", "6.5 to 7.5", "8.5 to 9.0"));
+        topics.get(10).addQuestion(new Question("What is used for coloring a moustache?", "Hair color crayons; pomades; liquid eyebrows and eyelash tints", "Permanent colors", "Toners ", "It’s not recommended to color"));
+        topics.get(10).addQuestion(new Question("When performing sinusoidal facial massage what does it do?", "Improves muscle tone", "Purifies pores", "Makes skin looked dull", "Decrease blood flow"));
+        topics.get(10).addQuestion(new Question("What is the best for long neck?", "Hair fuller at the nape", "Extremely short hair styles", "Curly hair", "Fringe "));
+        topics.get(10).addQuestion(new Question("When shaving, the ball of the thumb and first two fingers are positioned on the flat side of the", "Shank", "The handle of the razor", "Blade", "Tang "));
+        topics.get(10).addQuestion(new Question("Ask the client questions relating to the skin appearance and ", "Home care routine", "Dietary preferences", "Income", "Relationship status"));
+        topics.get(10).addQuestion(new Question("The set of shears refers to the alignment of blades", "In relation to each other", "In relation to the pivot screw", "Between moving and still points", "To the finger brace"));
+        topics.get(10).addQuestion(new Question("What type of hair color will lighten the hair?", "Permanent hair color", "Temporary hair color", "Semipermanent haircolor", "Demipermanent haircolor"));
+        topics.get(10).addQuestion(new Question("Color position across from each other are", "Complimentary colors", "Opposite colors", "Primary colors", "Base or tertiary colors"));
+        topics.get(10).addQuestion(new Question("When performing a head shave what is the first step?", "Lock the chair", "Drape the client", "Apply a hot towel", "Remove shampoo cap"));
+        topics.get(10).addQuestion(new Question("The study of causes of diseases and their modes of operation", "Etiology ", "Physiology ", "Bacteriology", "Anatomy"));
+        topics.get(10).addQuestion(new Question("Why do we apply protective cream?", "Prevent irritation", "Moisturize", "Clean", "Add color"));
+        topics.get(10).addQuestion(new Question("What is the purpose of a shampoo?", "Cleanse the sculp and hair", "Moisturize scalp and hair", "Treat inflammation", "Add some relaxation to the client"));
+        topics.get(10).addQuestion(new Question("Anthrax and tetanus bacilli form which type of spore? ", "Spherical ", "Mitosis", "Flagella ", " Infectious "));
+        topics.get(10).addQuestion(new Question("All French style shears ", "have a finger brace. ", "are cobalt metal.", "are made in France. ", "have tight pivots. "));
+        topics.get(10).addQuestion(new Question("Prior to a shaving service the headrest MUST be ", "disinfected and covered. ", "washed and dried. ", "washed and removed. ", "sanitized and sterilized. "));
+        topics.get(10).addQuestion(new Question("To avoid damage to muscle tissue, the movements of a massage are directed ", "toward the origin of the muscle. ", "away from the origin of the muscle. ", "around the origin of the muscle. ", "above the origin of the muscle. "));
+        topics.get(10).addQuestion(new Question("Which of the following can permanently relieve split ends? ", "Cutting the ends ", "Applying oil to the ends", "Using a styling gel on the ends", "Moistening the ends "));
+        topics.get(10).addQuestion(new Question("The diameter of a single strand of hair is also called ", "texture. ", "growth pattern. ", "porosity. ", "density. "));
+        topics.get(10).addQuestion(new Question("What should be performed FIRST before applying permanent haircolor? ", "Patch test ", "Strand test ", "Curl test ", "Texture test "));
+        topics.get(10).addQuestion(new Question("Before sodium hydroxide processing, hair should be analyzed to determine its ", "texture, porosity, and elasticity. ", "density, color, and end bonds. ", "acidity. ", "alkalinity. "));
+        topics.get(10).addQuestion(new Question("The aponeurosis tendon covers… / where is the aponeurosis located?", "Top of the head", "Back of the hand", "Forehead", "Front of the head"));
+
+
+
+
+
+
+
+
 
         return topics;
     }
     public int questionsLeft(){
-        return questions.size();
+        return topic.getSize();
     }
     public void shareContext(Context context){
         mContext=context;
@@ -463,15 +753,14 @@ public class Model {
             return temp;
 
         } else {
-
-            int rand = random.nextInt(questions.size());
-            Question temp = questions.get(rand);
-            questions.remove(rand);
-            return temp;
+            return topic.getQuestion();
         }
-
     }
 
+    public void restore(){
+        initializeQuestions();
+
+    }
 
     private void initializeQuestions(){
 
@@ -492,27 +781,40 @@ public class Model {
     private void initTopics(){
         topics = new ArrayList<>();
         mPrefs = mContext.getSharedPreferences("MyObject", MODE_PRIVATE);
-        if (mPrefs == null){
-            initializeQuestions();
-            return;
-        }
+
         for (int i = 0; i < testNames.size(); i++) {
             String name = testNames.get(i);
-            if (!mPrefs.contains(name)){
+            if (mPrefs.contains(name)) {
+                Gson gson = new Gson();
+                String json = mPrefs.getString(name, "error");
+                if (json == "error"){
+                    Log.d(TAG, "initTopics: SharedPreferences Error");
+                }
+                Topic topic = gson.fromJson(json, Topic.class);
+                topics.add(topic);
+            } else {
                 initializeQuestions();
-                return;
+                Log.d(TAG, "initTopics: I = 0");
+                i = 0;
             }
-            Gson gson = new Gson();
-            String json = mPrefs.getString(name, "error");
-            topic = gson.fromJson(json, Topic.class);
-            topics.add(topic);
         }
+    }
+    public void saveData(){
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        Gson gson;
+        String json;
+        for (int i = 0; i < testNames.size(); i++) {
+            gson = new Gson();
+            json = gson.toJson(topics.get(i));
+            prefsEditor.putString(topics.get(i).getName(), json);
 
+        }
+        prefsEditor.apply();
 
     }
     public void setTest(String name){
         topic = topics.get(testNames.indexOf(name));
-        questions = topic.getQuestions();
+
         if(name.equals(testNames.get(testNames.size()-1))){
             setWrongAnswersMode();
         } else {
@@ -524,13 +826,17 @@ public class Model {
         if (failedQuestions) {
             return !(wrongAnswers.isEmpty());
         }else{
-            return !(questions.isEmpty());
+            return !(topic.isEmpty());
         }
     }
     public ArrayList<Topic> getTopics(Context context){
         mContext = context;
         initTopics();
         return topics;
+    }
+
+    public Topic getTopic() {
+        return topic;
     }
 
     public void addWrongAnswer(Question question) {

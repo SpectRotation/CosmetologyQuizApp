@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +37,8 @@ public class MenuTestRecViewAdapter extends RecyclerView.Adapter<MenuTestRecView
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder: Called");
         holder.txtTestName.setText(topics.get(position).getName());
-
+        holder.progressBar.setMax(topics.get(position).getMax());
+        holder.progressBar.setProgress(topics.get(position).getProgress());
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,6 +47,7 @@ public class MenuTestRecViewAdapter extends RecyclerView.Adapter<MenuTestRecView
                 mContext.startActivity(intent);
             }
         });
+        holder.txtGrade.setText(topics.get(position).getGrades()+"%");
 
 
     }
@@ -56,16 +59,15 @@ public class MenuTestRecViewAdapter extends RecyclerView.Adapter<MenuTestRecView
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         private CardView parent;
-        private TextView txtTestName;
-        private TextView txtAccuracy;
-        private TextView txtCurrentState;
+        private TextView txtTestName,txtGrade;
+        private ProgressBar progressBar;
         public ViewHolder(@NonNull View itemView){
             super(itemView);
 
             parent = itemView.findViewById(R.id.item_parent);
             txtTestName = itemView.findViewById(R.id.tv_test_name);
-            txtCurrentState = itemView.findViewById(R.id.tv_current_state);
-            txtAccuracy = itemView.findViewById(R.id.tv_accuracy);
+            progressBar = itemView.findViewById(R.id.progressBar);
+            txtGrade = itemView.findViewById(R.id.txtGrade);
 
         }
     }
